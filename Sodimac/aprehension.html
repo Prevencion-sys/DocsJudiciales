@@ -1,0 +1,4197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sodimac · Documentos</title>
+  <link rel="icon" type="image/png" href="Public/sodimac-homecenter-sinfondo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="Public/premium.css">
+  <style>
+    :root {
+      --red: #E3000F;
+      --red-dark: #cc000e;
+      --red-soft: #fef2f1;
+      --red-border: #f5c6c3;
+      --ink: #1A1A1A;
+      --ink-2: #2d2d2d;
+      --ink-3: #4f4f4f;
+      --ink-4: #6e6e6e;
+      --surface: #F5F5F5;
+      --surface-2: #e0deda;
+      --white: #ffffff;
+      --green: #1a7a4a;
+      --green-soft: #f0faf4;
+      --green-border: #a8dfc0;
+      --accent: #FF6B35;
+      --radius: 12px;
+      --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      min-height: 100vh;
+      font-size: 14px;
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--ink);
+      color: var(--white);
+      padding: 0 28px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .header-sub {
+      font-size: 11px;
+      color: #888;
+      margin-top: 1px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-nav-doc {
+      position: relative;
+      overflow: hidden;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      cursor: pointer;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+      z-index: 1;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+      border: none;
+    }
+
+    /* Gradiente rojo animado de fondo */
+    .btn-nav-doc::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+          #d42015 0%,
+          #ff4d4d 25%,
+          #a81610 50%,
+          #ff6666 75%,
+          #d42015 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 4s ease infinite;
+      z-index: -2;
+    }
+
+    /* Efecto grid/rejilla */
+    .btn-nav-doc::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg,
+          rgba(255, 255, 255, 0.04) 0px,
+          transparent 1px,
+          transparent 2px,
+          rgba(255, 255, 255, 0.04) 3px),
+        repeating-linear-gradient(90deg,
+          rgba(255, 255, 255, 0.03) 0px,
+          transparent 1px,
+          transparent 2px,
+          rgba(255, 255, 255, 0.03) 3px);
+      background-size: 16px 16px, 20px 20px;
+      animation: gridMove 6s linear infinite;
+      z-index: -1;
+      opacity: 0.8;
+    }
+
+    /* Shine al hover */
+    .btn-nav-doc .shine {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.25) 50%,
+          transparent 100%);
+      transition: left 0.5s;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .btn-nav-doc:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-nav-doc:hover .shine {
+      left: 100%;
+    }
+
+    .btn-nav-doc:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Texto */
+    .btn-nav-doc .btn-content {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #ffcccc;
+      text-shadow: 0 2px 10px rgba(212, 32, 21, 0.5);
+    }
+
+    /* Partículas */
+    .btn-nav-doc .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .btn-nav-doc:hover .particle {
+      animation: particleFly 0.5s ease-out forwards;
+    }
+
+    /* ── STORE BUTTON (premium oscuro) ── */
+    .btn-store {
+      position: relative;
+      overflow: hidden;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      cursor: pointer;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+      z-index: 1;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+      border: none;
+      max-width: 200px;
+    }
+
+    /* Gradiente oscuro animado */
+    .btn-store::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+          #1a1a1a 0%,
+          #2d2d2d 25%,
+          #1a1a1a 50%,
+          #3d3d3d 75%,
+          #1a1a1a 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 4s ease infinite;
+      z-index: -2;
+    }
+
+    /* Grid/rejilla */
+    .btn-store::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg,
+          rgba(255, 255, 255, 0.04) 0px,
+          transparent 1px,
+          transparent 2px,
+          rgba(255, 255, 255, 0.04) 3px),
+        repeating-linear-gradient(90deg,
+          rgba(255, 255, 255, 0.03) 0px,
+          transparent 1px,
+          transparent 2px,
+          rgba(255, 255, 255, 0.03) 3px);
+      background-size: 16px 16px, 20px 20px;
+      animation: gridMove 6s linear infinite;
+      z-index: -1;
+      opacity: 0.8;
+    }
+
+    /* Shine */
+    .btn-store .shine {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.25) 50%,
+          transparent 100%);
+      transition: left 0.5s;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .btn-store:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-store:hover .shine {
+      left: 100%;
+    }
+
+    .btn-store:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Contenido */
+    .btn-store .btn-content {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #fff;
+    }
+
+    /* Dot rojo con pulso */
+    .btn-store .store-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+      box-shadow: 0 0 10px var(--red);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    .btn-store .store-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 140px;
+    }
+
+    /* Partículas */
+    .btn-store .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .btn-store:hover .particle {
+      animation: particleFly 0.5s ease-out forwards;
+    }
+
+    @keyframes dotPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1
+      }
+
+      50% {
+        transform: scale(1.2);
+        opacity: 0.8
+      }
+    }
+
+    .btn-admin {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #888;
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .btn-admin:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+    }
+
+    /* STORE MODAL */
+    .store-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .store-modal-overlay.open {
+      display: flex;
+    }
+
+    .store-modal {
+      background: var(--white);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      animation: modalSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes modalSlideUp {
+      from {
+        transform: translateY(24px) scale(0.97);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .store-modal-header {
+      background: var(--ink);
+      color: white;
+      padding: 28px 28px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .store-modal-header::after {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(212, 32, 21, 0.15);
+    }
+
+    .store-modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .store-modal-title svg {
+      color: var(--red);
+      flex-shrink: 0;
+    }
+
+    .store-modal-sub {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    .store-modal-body {
+      padding: 20px 24px 24px;
+    }
+
+    .store-modal-sub {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .store-modal-body {
+      padding: 20px;
+    }
+
+    .store-option {
+      border: 2px solid var(--surface-2);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .store-option:last-child {
+      margin-bottom: 0;
+    }
+
+    .store-option:hover {
+      border-color: var(--red-border);
+      background: var(--red-soft);
+    }
+
+    .store-option.selected {
+      border-color: var(--red);
+      background: var(--red-soft);
+    }
+
+    .store-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: var(--surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-3);
+      font-family: 'DM Mono', monospace;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .store-option.selected .store-num,
+    .store-option:hover .store-num {
+      background: var(--red);
+      color: white;
+    }
+
+    .store-info-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .store-info-id {
+      font-size: 11px;
+      color: var(--ink-4);
+      margin-top: 2px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .store-check {
+      margin-left: auto;
+      font-size: 18px;
+      color: var(--red);
+      display: none;
+    }
+
+    .store-option.selected .store-check {
+      display: block;
+    }
+
+    /* PROGRESS */
+    .progress-wrap {
+      background: var(--surface);
+      padding: 24px 28px 0;
+    }
+
+    .steps-row {
+      display: flex;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .step-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding-bottom: 14px;
+      cursor: pointer;
+    }
+
+    .step-item::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      right: -50%;
+      height: 2px;
+      background: #e0deda;
+      z-index: 0;
+      transition: background 0.4s ease;
+    }
+
+    .step-item:last-child::before {
+      display: none;
+    }
+
+    .step-item.done::before {
+      background: var(--red);
+    }
+
+    .step-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #e0deda;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-4);
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .step-item.active .step-dot {
+      background: var(--red);
+      color: white;
+      box-shadow: 0 0 0 4px rgba(227, 0, 15, 0.1);
+    }
+
+    .step-item.done .step-dot {
+      background: var(--green);
+      color: transparent;
+      position: relative;
+    }
+
+    .step-item.done .step-dot::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      margin-bottom: 2px;
+    }
+
+    .step-label {
+      font-size: 13px;
+      color: var(--ink-4);
+      margin-top: 8px;
+      font-weight: 500;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .step-item.active .step-label {
+      color: var(--ink);
+      font-weight: 700;
+      opacity: 1;
+    }
+
+    .step-item.done .step-label {
+      color: var(--ink);
+      opacity: 0.9;
+    }
+
+    /* MAIN */
+    .main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 24px 16px 60px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      padding: 32px;
+      margin-bottom: 20px;
+      border: none;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--surface-2);
+    }
+
+    .card-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .card-label {
+      font-size: 22px;
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.2px;
+    }
+
+    .card-sub {
+      font-size: 12px;
+      color: var(--ink-4);
+      margin-top: 2px;
+    }
+
+    .auto-field {
+      background: var(--surface);
+      border: 1.5px solid var(--surface-2);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .auto-field-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-4);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .auto-field-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+    }
+
+    .auto-badge {
+      background: var(--green-soft);
+      border: 1px solid var(--green-border);
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .auto-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-3);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    label .req {
+      color: var(--red);
+      margin-left: 2px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #e0deda;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      background: var(--white);
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(232, 35, 26, 0.08);
+    }
+
+    input[readonly] {
+      background: var(--surface);
+      color: var(--ink-3);
+      cursor: default;
+      border-style: dashed;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 85px;
+      line-height: 1.6;
+    }
+
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* CHECKLIST */
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .check-item {
+      background: var(--surface);
+      border: 1.5px solid var(--surface-2);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+
+    .check-item.si-active {
+      background: var(--green-soft);
+      border-color: var(--green-border);
+    }
+
+    .check-item.no-active {
+      background: var(--red-soft);
+      border-color: var(--red-border);
+    }
+
+    .check-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-2);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .check-toggle {
+      display: flex;
+      gap: 6px;
+    }
+
+    .check-btn {
+      flex: 1;
+      padding: 7px 0;
+      border-radius: 7px;
+      border: 1.5px solid #e0deda;
+      background: white;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .check-btn:hover {
+      background: var(--surface);
+    }
+
+    .check-btn.active-si {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
+
+    .check-btn.active-no {
+      background: var(--red);
+      border-color: var(--red);
+      color: white;
+    }
+
+    .check-desc {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .check-desc.visible {
+      display: block;
+    }
+
+    .check-desc input {
+      font-size: 12px;
+      padding: 8px 10px;
+    }
+
+    /* POLICÍA ROWS */
+    .policia-card {
+      background: var(--surface);
+      border: 1.5px solid var(--surface-2);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .policia-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .policia-num-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-4);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: var(--surface-2);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .btn-remove-row {
+      background: none;
+      border: 1px solid #e0deda;
+      color: var(--ink-4);
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-remove-row:hover {
+      background: var(--red-soft);
+      border-color: var(--red-border);
+      color: var(--red);
+    }
+
+    .btn-add-row {
+      background: var(--ink);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: var(--radius);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .btn-add-row:hover {
+      background: #2a2a2a;
+    }
+
+    /* LLAMADAS POLICIA */
+    .llamada-row {
+      display: grid;
+      grid-template-columns: 80px 100px 1fr 130px;
+      gap: 10px;
+      margin-bottom: 8px;
+      align-items: end;
+    }
+
+    .btn-remove-llamada {
+      background: none;
+      border: 1px solid #e0deda;
+      color: var(--ink-4);
+      width: 32px;
+      height: 42px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-remove-llamada:hover {
+      background: var(--red-soft);
+      border-color: var(--red-border);
+      color: var(--red);
+    }
+
+    /* IA / HECHOS */
+    .hechos-wrapper {
+      background: linear-gradient(135deg, #fffaf9, #fff8f7);
+      border: 1.5px dashed var(--red-border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .hechos-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .hint-chip {
+      background: var(--red-soft);
+      border: 1px solid var(--red-border);
+      color: var(--red);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .hint-text {
+      font-size: 12px;
+      color: var(--ink-4);
+    }
+
+    .btn-ai {
+      margin-top: 12px;
+      position: relative;
+      overflow: hidden;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 4px 20px rgba(227, 0, 15, 0.3), 0 0 40px rgba(227, 0, 15, 0.08);
+      animation: glowPulse 2.5s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .btn-ai::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent 0%, rgba(255, 255, 255, 0.12) 10%, transparent 20%);
+      animation: glowRotate 3s linear infinite;
+      z-index: -1;
+    }
+
+    .btn-ai::after {
+      content: '';
+      position: absolute;
+      inset: 1px;
+      background: var(--red);
+      border-radius: 7px;
+      z-index: -1;
+    }
+
+    .btn-ai:hover {
+      background: var(--accent);
+      transform: scale(1.02);
+      box-shadow: 0 6px 30px rgba(227, 0, 15, 0.4), 0 0 60px rgba(227, 0, 15, 0.12);
+    }
+
+    .btn-ai:active {
+      transform: scale(0.98);
+    }
+
+    .btn-ai:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      animation: none;
+      box-shadow: 0 2px 8px rgba(212, 32, 21, 0.15);
+    }
+
+    .btn-ai:disabled::before {
+      animation: none;
+      display: none;
+    }
+
+    @keyframes glowPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 4px 20px rgba(212, 32, 21, 0.3), 0 0 40px rgba(212, 32, 21, 0.08);
+      }
+
+      50% {
+        box-shadow: 0 4px 30px rgba(212, 32, 21, 0.45), 0 0 60px rgba(212, 32, 21, 0.15);
+      }
+    }
+
+    @keyframes glowRotate {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .ai-loading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      font-size: 13px;
+      color: var(--ink-4);
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--surface-2);
+      border-top-color: var(--red);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .ai-result {
+      margin-top: 14px;
+      background: var(--green-soft);
+      border: 1.5px solid var(--green-border);
+      border-radius: var(--radius);
+      padding: 16px;
+      display: none;
+    }
+
+    .ai-result-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .ai-result-text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--ink-2);
+      white-space: pre-wrap;
+    }
+
+    .btn-edit-ai {
+      margin-top: 10px;
+      background: none;
+      border: 1px solid var(--green-border);
+      color: var(--green);
+      padding: 6px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .ai-validation-warn {
+      background: #fffbeb;
+      border: 1.5px solid #fcd34d;
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #92400e;
+      font-weight: 500;
+      display: none;
+    }
+
+    .ai-validation-warn strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      color: #78350f;
+    }
+
+    /* NAV */
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      gap: 12px;
+    }
+
+    .btn-back {
+      padding: 11px 22px;
+      border: 1.5px solid #e0deda;
+      background: white;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-3);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .btn-back:hover {
+      background: var(--surface);
+    }
+
+    .btn-next {
+      flex: 1;
+      max-width: 220px;
+      padding: 12px 24px;
+      background: var(--red);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .btn-next:hover {
+      background: var(--accent);
+      transform: scale(1.02);
+    }
+
+    .btn-generate {
+      flex: 1;
+      max-width: 240px;
+      padding: 12px 24px;
+      background: var(--red);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .btn-generate:hover {
+      background: var(--accent);
+      transform: scale(1.02);
+    }
+
+    /* PREVIEW */
+    .preview-doc-wrap {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: var(--radius);
+      padding: 28px;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #1a1a1a;
+      overflow-x: auto;
+    }
+
+    /* SUCCESS */
+    .success-wrap {
+      text-align: center;
+      padding: 40px 24px 28px;
+    }
+
+    .success-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2ecc71, #1a7a4a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      margin: 0 auto 20px;
+      box-shadow: 0 6px 24px rgba(26, 122, 74, 0.3);
+      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .success-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .success-sub {
+      color: var(--ink-4);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .success-meta {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--surface-2);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-bottom: 24px;
+    }
+
+    .success-meta strong {
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+    }
+
+    .btn-print {
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 14px 36px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(232, 35, 26, 0.3);
+      transition: all 0.2s;
+    }
+
+    .btn-print:hover {
+      background: var(--accent);
+      transform: scale(1.02);
+    }
+
+    .btn-new {
+      display: block;
+      margin: 14px auto 0;
+      background: none;
+      border: none;
+      color: var(--ink-4);
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: underline;
+    }
+
+    /* ADMIN MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      animation: slideUp 0.25s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-header {
+      background: var(--ink);
+      color: white;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .modal-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 5px;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: white;
+    }
+
+    .modal-body {
+      padding: 22px;
+    }
+
+    .modal-section {
+      margin-bottom: 22px;
+    }
+
+    .modal-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-4);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--surface-2);
+    }
+
+    .admin-store-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .admin-store-tab {
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1.5px solid var(--surface-2);
+      background: var(--surface);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-4);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .admin-store-tab.active {
+      border-color: var(--red);
+      background: var(--red-soft);
+      color: var(--red);
+    }
+
+    .apoderado-item {
+      background: var(--surface);
+      border: 1px solid var(--surface-2);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .ap-info {
+      flex: 1;
+    }
+
+    .ap-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .ap-cc {
+      font-size: 11px;
+      color: var(--ink-4);
+      font-family: 'DM Mono', monospace;
+      margin-top: 2px;
+    }
+
+    .btn-remove-ap {
+      background: none;
+      border: 1px solid #e0deda;
+      color: var(--ink-4);
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-remove-ap:hover {
+      background: var(--red-soft);
+      border-color: var(--red-border);
+      color: var(--red);
+    }
+
+    .add-ap-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .btn-add-ap {
+      background: var(--ink);
+      color: white;
+      border: none;
+      padding: 11px 16px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .counter-value {
+      font-family: 'DM Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .btn-reset-counter {
+      background: none;
+      border: 1px solid #e0deda;
+      color: var(--ink-4);
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-reset-counter:hover {
+      background: var(--red-soft);
+      border-color: var(--red-border);
+      color: var(--red);
+    }
+
+    .lock-screen {
+      padding: 28px 22px;
+      text-align: center;
+    }
+
+    .lock-icon {
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+
+    .lock-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .lock-sub {
+      font-size: 13px;
+      color: var(--ink-4);
+      margin-bottom: 20px;
+    }
+
+    .pin-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .pin-digit {
+      width: 48px;
+      height: 56px;
+      border: 2px solid #e0deda;
+      border-radius: var(--radius);
+      font-size: 24px;
+      font-weight: 700;
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .pin-digit:focus {
+      outline: none;
+      border-color: var(--red);
+    }
+
+    .btn-unlock {
+      background: var(--ink);
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .lock-error {
+      color: var(--red);
+      font-size: 12px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .btn-save-admin {
+      width: 100%;
+      background: var(--ink);
+      color: white;
+      border: none;
+      padding: 13px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 4px;
+    }
+
+    .save-confirm {
+      text-align: center;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 8px;
+      display: none;
+    }
+
+    /* FAB */
+    .fab-wrap {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      z-index: 999;
+    }
+
+    .fab-tooltip {
+      background: #141414;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 7px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(6px) scale(0.95);
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+      position: relative;
+    }
+
+    .fab-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 18px;
+      border: 5px solid transparent;
+      border-top-color: #141414;
+    }
+
+    .fab-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      padding: 0;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+    }
+
+    .cube-scene {
+      width: 50px;
+      height: 50px;
+      perspective: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cube {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: idleFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes idleFloat {
+
+      0%,
+      100% {
+        transform: rotateY(0deg) rotateX(0deg);
+      }
+
+      20% {
+        transform: rotateY(10deg) rotateX(3deg);
+      }
+
+      50% {
+        transform: rotateY(-6deg) rotateX(-2deg);
+      }
+
+      80% {
+        transform: rotateY(8deg) rotateX(2deg);
+      }
+    }
+
+    .cube.flipped {
+      animation: flipReveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes flipReveal {
+      from {
+        transform: rotateX(0deg);
+      }
+
+      to {
+        transform: rotateX(-180deg);
+      }
+    }
+
+    .face {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backface-visibility: hidden;
+    }
+
+    .face-front {
+      background: #1a1a1a;
+      transform: translateZ(25px);
+    }
+
+    .face-back {
+      background: #25D366;
+      transform: rotateX(180deg) translateZ(25px);
+    }
+
+    .face-top {
+      background: #222;
+      transform: rotateX(90deg) translateZ(25px);
+    }
+
+    .face-bottom {
+      background: #111;
+      transform: rotateX(-90deg) translateZ(25px);
+    }
+
+    .face-left {
+      background: #1e1e1e;
+      transform: rotateY(-90deg) translateZ(25px);
+    }
+
+    .face-right {
+      background: #1e1e1e;
+      transform: rotateY(90deg) translateZ(25px);
+    }
+
+    .dot-idle {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1.5px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .fab-ring {
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(26, 26, 26, 0.12);
+      animation: ringPulse 3.5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes ringPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+
+      60% {
+        transform: scale(1.18);
+        opacity: 0;
+      }
+    }
+
+    @media(hover:hover) {
+      .fab-wrap:hover .cube {
+        animation: flipReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      .fab-wrap:hover .fab-tooltip {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* PRINT */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      .print-area,
+      .print-area * {
+        visibility: visible;
+      }
+
+      .print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+    }
+
+    @media(max-width:520px) {
+
+      .row-2,
+      .auto-row,
+      .row-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .checklist-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .add-ap-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .add-ap-row .btn-add-ap {
+        grid-column: span 2;
+      }
+
+      .step-label {
+        display: none;
+      }
+
+      .main {
+        padding: 16px 12px 60px;
+      }
+
+      .card {
+        padding: 18px 16px;
+      }
+
+      .btn-store .store-name {
+        max-width: 80px;
+      }
+
+      .llamada-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .ai-result-text.typing::after {
+      content: '▋';
+      color: var(--green);
+      animation: cursorBlink 0.6s step-end infinite;
+    }
+
+    @keyframes cursorBlink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%
+      }
+
+      50% {
+        background-position: 100% 50%
+      }
+
+      100% {
+        background-position: 0% 50%
+      }
+    }
+
+    @keyframes gridMove {
+      0% {
+        background-position: 0 0
+      }
+
+      100% {
+        background-position: 20px 20px
+      }
+    }
+
+    @keyframes particleFly {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-25px) scale(0)
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <img src="./Public/logo-sodimac.png"
+        style="height:35px;border-radius:4px;transform: scale(1.1);transform-origin: left center;" alt="Sodimac">
+      <div>
+        <div class="header-title">Informe de Aprehensión</div>
+        <div class="header-sub" id="headerSub">Selecciona una tienda</div>
+      </div>
+    </div>
+    <div class="header-right">
+
+      <button class="btn-store" onclick="openStoreModal()" id="btnStore">
+        <span class="shine"></span>
+        <span class="btn-content">
+          <span class="store-dot"></span>
+          <span class="store-name" id="btnStoreName">Tienda →</span>
+        </span>
+      </button>
+
+      <a href="index.html" class="btn-nav-doc" title="Ir a Contrato de Transacción">
+        <span class="shine"></span>
+        <span class="btn-nav-doc-text">Contrato</span>
+      </a>
+
+      <button class="btn-admin" onclick="openAdmin()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          style="width:16px;height:16px; vertical-align: middle;">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path
+            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+          </path>
+        </svg></button>
+    </div>
+  </div>
+
+  <!-- STORE MODAL -->
+  <div class="store-modal-overlay" id="storeOverlay" onclick="closeStoreOnBg(event)">
+    <div class="store-modal">
+      <div class="store-modal-header">
+        <div class="store-modal-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" style="width:20px;height:20px">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          Seleccionar Tienda
+        </div>
+        <div class="store-modal-sub">La selección se guardará para la próxima vez</div>
+      </div>
+      <div class="store-modal-body" id="storeModalBody"></div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="steps-row">
+      <div class="step-item active" id="tab0">
+        <div class="step-dot">1</div>
+        <div class="step-label">Aprehensor</div>
+      </div>
+      <div class="step-item" id="tab1">
+        <div class="step-dot">2</div>
+        <div class="step-label">Aprehendido</div>
+      </div>
+      <div class="step-item" id="tab2">
+        <div class="step-dot">3</div>
+        <div class="step-label">Hechos</div>
+      </div>
+      <div class="step-item" id="tab3">
+        <div class="step-dot">4</div>
+        <div class="step-label">Productos</div>
+      </div>
+      <div class="step-item" id="tab4">
+        <div class="step-dot">5</div>
+        <div class="step-label">Policía</div>
+      </div>
+      <div class="step-item" id="tab5">
+        <div class="step-dot">6</div>
+        <div class="step-label">Revisión</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- ══ STEP 0: Aprehensor ══ -->
+    <div id="step0">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon" style="background:#f0f0ee">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:18px;height:18px">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+          </div>
+          <div>
+            <div class="card-label">Datos del Informe</div>
+            <div class="card-sub">Generados automáticamente</div>
+          </div>
+        </div>
+        <div class="auto-row">
+          <div class="auto-field">
+            <div>
+              <div class="auto-field-label">N° Aprehensión</div>
+              <div class="auto-field-value" id="numAprehDisplay">—</div>
+            </div><span class="auto-badge">Auto</span>
+          </div>
+          <div class="auto-field">
+            <div>
+              <div class="auto-field-label">Fecha</div>
+              <div class="auto-field-value" id="fechaDisplay" style="font-size:13px">—</div>
+            </div><span class="auto-badge">Hoy</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon" style="background:#f5f0ff">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:18px;height:18px">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div>
+            <div class="card-label">Persona que Realizó la Aprehensión</div>
+            <div class="card-sub" id="aprehensorStoreSub">—</div>
+          </div>
+        </div>
+        <div class="field"><label>Aprehensor <span class="req">*</span></label>
+          <select id="aprehensorSelect" onchange="fillAprehensor()">
+            <option value="">Seleccionar aprehensor...</option>
+          </select>
+        </div>
+        <div class="row-3">
+          <div class="field"><label>N° Identificación</label><input type="text" id="aprehensorCC" readonly
+              placeholder="Automático con el panel admin"></div>
+          <div class="field"><label>Edad</label><input type="text" id="aprehensorEdad" readonly
+              placeholder="Automático con el panel admin"></div>
+          <div class="field"><label>Estado Civil</label><input type="text" id="aprehensorEstadoCivil" readonly
+              placeholder="Automático con el panel admin"></div>
+        </div>
+        <div class="row-3">
+          <div class="field"><label>Nivel de Educación</label><input type="text" id="aprehensorEducacion" readonly
+              placeholder="Automático con el panel admin"></div>
+          <div class="field"><label>Cargo</label><input type="text" id="aprehensorCargo" readonly
+              placeholder="Automático con el panel admin"></div>
+          <div class="field"><label>Celular</label><input type="text" id="aprehensorCelular" readonly
+              placeholder="Automático con el panel admin"></div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label>Correo Electrónico</label><input type="text" id="aprehensorCorreo" readonly
+              placeholder="El correo del Jefe, Líder o Coordinador"></div>
+          <div class="field"><label>Jefe Inmediato</label><input type="text" id="aprehensorJefe" readonly
+              placeholder="Automático con el panel admin"></div>
+        </div>
+        <div class="field" style="margin-bottom:0"><label>Dirección de Notificaciones (Tienda)</label><input type="text"
+            id="aprehensorDireccion" readonly placeholder="Automático con el panel admin"></div>
+      </div>
+      <div class="nav-row">
+        <div></div><button class="btn-next" onclick="goNext(0)">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ══ STEP 1: Aprehendido ══ -->
+    <div id="step1" class="hidden">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon" style="background:#fffbf0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:18px;height:18px">
+              <rect x="2" y="5" width="20" height="14" rx="2" />
+              <line x1="2" y1="10" x2="22" y2="10" />
+            </svg>
+          </div>
+          <div>
+            <div class="card-label">Datos de la Persona Aprehendida</div>
+          </div>
+        </div>
+        <div class="field"><label>Nombre Completo <span class="req">*</span></label><input type="text"
+            id="aprehendidoNombre" placeholder="Nombre y apellidos completos"></div>
+        <div class="row-2">
+          <div class="field"><label>N° Identificación <span class="req">*</span></label>
+            <input type="text" id="aprehendidoCC" placeholder="Número de cédula" inputmode="numeric"
+              onblur="checkReincidente()">
+          </div>
+
+          <div id="reincidenteBanner"
+            style="display:none;background:#fff1f0;border:1.5px solid #e8231a;border-radius:10px;padding:14px 16px;margin-top:10px">
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <div style="font-size:20px;flex-shrink:0">
+                <!--Icono svg-->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" style="width:20px;height:20px">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:#b51a12;margin-bottom:4px">Persona reincidente
+                  detectada</div>
+                <div style="font-size:12px;color:#3a3a3a;line-height:1.6" id="reincidenteDetalle"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field"><label>Expedida en <span class="req">*</span></label><input type="text"
+              id="aprehendidoExpedida" placeholder="Ej: Cali" value="Cali"></div>
+        </div>
+        <div id="reincidenteBanner"
+          style="display:none;background:#fff1f0;border:1.5px solid #e8231a;border-radius:10px;padding:14px 16px;margin-top:10px">
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <div style="flex-shrink:0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="width:20px;height:20px">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+            </div>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#b51a12;margin-bottom:4px">Persona reincidente detectada
+              </div>
+              <div style="font-size:12px;color:#3a3a3a;line-height:1.6" id="reincidenteDetalle"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row-3">
+          <div class="field"><label>Nacionalidad <span class="req">*</span></label><input type="text"
+              id="aprehendidoNacionalidad" placeholder="Ej: colombiano/a" value="Colombiano/a"></div>
+          <div class="field"><label>Edad <span class="req">*</span></label><input type="number" id="aprehendidoEdad"
+              placeholder="Ej: 35 mayor a 18 años" inputmode="numeric"></div>
+          <div class="field"><label>Estado Civil <span class="req">*</span></label>
+            <select id="aprehendidoEstadoCivil">
+              <option value="">Seleccionar...</option>
+              <option>Soltero/a</option>
+              <option>Casado/a</option>
+              <option>Unión libre</option>
+              <option>Divorciado/a</option>
+              <option>Viudo/a</option>
+            </select>
+          </div>
+        </div>
+        <div class="row-3">
+          <div class="field"><label>Día Nacimiento <span class="req">*</span></label><input type="number"
+              id="aprehendidoDia" placeholder="DD" min="1" max="31" inputmode="numeric"></div>
+          <div class="field"><label>Mes Nacimiento <span class="req">*</span></label>
+            <select id="aprehendidoMes">
+              <option value="">— Mes —</option>
+              <option>enero</option>
+              <option>febrero</option>
+              <option>marzo</option>
+              <option>abril</option>
+              <option>mayo</option>
+              <option>junio</option>
+              <option>julio</option>
+              <option>agosto</option>
+              <option>septiembre</option>
+              <option>octubre</option>
+              <option>noviembre</option>
+              <option>diciembre</option>
+            </select>
+          </div>
+          <div class="field"><label>Año Nacimiento <span class="req">*</span></label><input type="number"
+              id="aprehendidoAnio" placeholder="AAAA" min="1940" max="2009" inputmode="numeric"></div>
+        </div>
+        <div class="field" style="margin-bottom:0"><label>Ocupación </label><input type="text" id="aprehendidoOcupacion"
+            placeholder="Ej: Electricista, Mercaderista Simoniz..."></div>
+      </div>
+      <div class="nav-row"><button class="btn-back" onclick="goBack(1)">← Atrás</button><button class="btn-next"
+          onclick="goNext(1)">Siguiente →</button></div>
+    </div>
+
+    <!-- ══ STEP 2: Hechos / Lugar ══ -->
+    <div id="step2" class="hidden">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon" style="background:#f0f7ff">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:18px;height:18px">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <div>
+            <div class="card-label">Hechos Presentados</div>
+          </div>
+        </div>
+        <div class="row-3">
+          <div class="field"><label>Fecha del Hecho <span class="req">*</span></label><input type="date"
+              id="fechaHecho"></div>
+          <div class="field"><label>Hora <span class="req">*</span></label><input type="time" id="horaHecho"></div>
+          <div class="field"><label>Sección <span class="req">*</span></label><input type="text" id="seccion"
+              placeholder="Ej: Herramientas, Autos"></div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label>Pasillo <span class="req">*</span></label>
+            <input type="text" id="pasillo" placeholder="Ej: Pasillo 56a">
+          </div>
+          <div class="field">
+            <label>Sexo del aprehendido <span class="req">*</span></label>
+            <select id="sexo">
+              <option value="">Seleccionar...</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+            </select>
+          </div>
+        </div>
+        <div class="row-1" style="margin-bottom: 15px;">
+          <div class="field">
+            <label>Lugar de Aprehensión</label>
+            <input type="text" id="lugarAprehension" placeholder="Ej: Salida de la tienda" value="Salida de la tienda">
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label>Dirigida después a</label>
+            <input type="text" id="dirigidaDespues" placeholder="Ej: Funcionarios" value="Funcionarios">
+          </div>
+          <div class="field">
+            <label>Manifestaciones al ser aprehendida</label>
+            <input type="text" id="manifestaciones" placeholder="Ej: No hace manifestación"
+              value="No hace manifestación">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+
+          <div class="card-icon" style="background:#fff0f0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:18px;height:18px">
+              <polyline points="9 11 12 14 22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg>
+          </div>
+
+          <div>
+            <div class="card-label">Checklist de la Situación</div>
+            <div class="card-sub">Marca SI o NO para cada pregunta</div>
+          </div>
+        </div>
+        <div class="checklist-grid" id="checklistGrid"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+
+          <div class="card-icon" style="background:#f0fff5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:18px;height:18px">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
+          </div>
+
+          <div>
+            <div class="card-label">Descripción de la Persona</div>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>Ropa y características visibles <span class="req">*</span></label>
+          <input type="text" id="descripcionPersona" placeholder="Ej: camiseta blanca, pantalón azul claro">
+        </div>
+      </div>
+
+      <div class="nav-row"><button class="btn-back" onclick="goBack(2)">← Atrás</button><button class="btn-next"
+          onclick="goNext(2)">Siguiente →</button></div>
+    </div>
+
+    <!-- ══ STEP 3: Productos + Relato IA ══ -->
+    <div id="step3" class="hidden">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon" style="background:#f0fff5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:18px;height:18px">
+              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21" />
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            </svg>
+          </div>
+
+          <div>
+            <div class="card-label">Elementos Objeto de la Defraudación</div>
+          </div>
+        </div>
+        <div id="productosContainer"></div>
+        <button class="btn-add-row" onclick="addProducto()">+ Agregar producto</button>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon" style="background:#fff8f0; color:#e67300"><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="width:18px;height:18px">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+            </svg></div>
+          <div>
+            <div class="card-label">Devolución y Condición</div>
+          </div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label>¿Policía devuelve elementos con acta?</label>
+            <select id="devolucionActa">
+              <option value="NO">NO</option>
+              <option value="SI">SI</option>
+            </select>
+          </div>
+          <div class="field"><label>¿Producto(s) apto(s) para venta?</label>
+            <select id="aptoVenta">
+              <option value="NO">NO</option>
+              <option value="SI">SI</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon" style="background:#fff8f0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
+          </div>
+
+          <div>
+            <div class="card-label">Relato de los Hechos</div>
+            <div class="card-sub">Primero llena los datos de arriba, luego formaliza</div>
+          </div>
+        </div>
+        <div class="hechos-wrapper">
+          <div class="hechos-hint"><span class="hint-chip">Sin formalidades</span><span class="hint-text">Escribe lo que
+              pasó como te salga</span></div>
+          <textarea id="relatoLibre" rows="4"
+            placeholder="Ej: vi al tipo salir por funcionarios con los guantes metidos en el bolsillo, llamé a CUOS, me confirmaron que tomó el producto del pasillo 54..."></textarea>
+          <div class="ai-validation-warn" id="aiValidationWarn">
+            <strong>⚠️ Completa estos campos antes de formalizar:</strong>
+            <span id="aiValidationList"></span>
+          </div>
+          <button class="btn-ai" onclick="formalizarRelato()" id="btnFormalize">Formalizar con IA</button>
+          <div class="ai-loading hidden" id="aiLoading">
+            <div class="spinner"></div> Procesando con IA...
+          </div>
+          <div class="ai-result" id="aiResult">
+            <div class="ai-result-badge">Relato formalizado</div>
+            <div class="ai-result-text" id="aiResultText"></div>
+            <button class="btn-edit-ai" onclick="editarRelato()">Editar manualmente</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-row"><button class="btn-back" onclick="goBack(3)">← Atrás</button><button class="btn-next"
+          onclick="goNext(3)">Siguiente →</button></div>
+    </div>
+
+    <!-- ══ STEP 4: Policía ══ -->
+    <div id="step4" class="hidden">
+      <div class="card">
+        <div class="card-head">
+
+          <div class="card-icon" style="background:#f0f7ff">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:18px;height:18px">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+          </div>
+
+          <div>
+            <div class="card-label">Llamado a la Policía</div>
+            <div class="card-sub">Registra las llamadas realizadas</div>
+          </div>
+        </div>
+        <div id="llamadasContainer"></div>
+        <button class="btn-add-row" onclick="addLlamada()">+ Agregar llamada</button>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon" style="background:#f0f7ff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+
+          <div>
+            <div class="card-label">Agentes que Acudieron</div>
+            <div class="card-sub">Mínimo 1 agente requerido</div>
+          </div>
+        </div>
+        <div id="agentesContainer"></div>
+        <button class="btn-add-row" onclick="addAgente()">+ Agregar agente</button>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+
+          <div class="card-icon" style="background:#f5f5f0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:18px;height:18px">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+            </svg>
+          </div>
+
+          <div>
+            <div class="card-label">Actuación de la Policía</div>
+          </div>
+        </div>
+        <div class="field"><label>Hora en que la persona fue conducida para judicialización</label>
+          <input type="time" id="horaConducida">
+        </div>
+        <div class="field" style="margin-bottom:0"><label>Descripción de la Actuación Policial</label>
+          <textarea id="actuacionPolicial" placeholder="Describe las acciones tomadas por la policía al llegar..."
+            rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon" style="background:#f5f5f0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+
+          ><div>
+            <div class="card-label">Testigos</div>
+            <div class="card-sub">Opcional — además del aprehensor</div>
+          </div>
+        </div>
+        <div id="testigosContainer"></div>
+        <button class="btn-add-row" onclick="addTestigo()">+ Agregar testigo</button>
+      </div>
+
+      <div class="nav-row"><button class="btn-back" onclick="goBack(4)">← Atrás</button><button class="btn-next"
+          onclick="goNext(4)">Ver Revisión →</button></div>
+    </div>
+
+    <!-- ══ STEP 5: Preview ══ -->
+    <div id="step5" class="hidden">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon" style="background:#f0f0ee">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:18px;height:18px">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+            </svg>
+          </div>
+
+          <div>
+            <div class="card-label">Vista Previa del Informe</div>
+            <div class="card-sub">Revisa antes de generar el documento</div>
+          </div>
+        </div>
+        <div class="preview-doc-wrap" id="previewBody"></div>
+      </div>
+      <div class="nav-row"><button class="btn-back" onclick="goBack(5)">← Corregir</button><button class="btn-generate"
+          onclick="generarDoc()">Generar Documento</button></div>
+    </div>
+
+    <!-- ══ SUCCESS ══ -->
+    <div id="stepSuccess" class="hidden">
+      <div class="card">
+        <div class="success-wrap">
+          <div class="success-ring">
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round" style="width:36px;height:36px">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+
+          </div>
+          <div class="success-title">¡Informe generado!</div>
+          <div class="success-sub">El informe de aprehensión fue generado correctamente.</div>
+          <div class="success-meta">Aprehensión N° <strong id="successNum">—</strong> · <span id="successFecha">—</span>
+          </div>
+          <br>
+          <button class="btn-print" onclick="imprimirDoc()">Imprimir o descargar PDF</button>
+          <button class="btn-new" onclick="nuevoInforme()">+ Nuevo informe</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+
+  <div class="print-area hidden" id="printArea"></div>
+
+  <!-- ══ ADMIN MODAL ══ -->
+
+  <div class="modal-overlay" id="adminOverlay" onclick="closeAdminOnBg(event)">
+    <div class="modal">
+      <div class="modal-header"><span class="modal-title">Panel de Administración</span><button class="modal-close"
+          onclick="closeAdmin()">✕</button></div>
+      <div id="lockScreen" class="lock-screen">
+        <div class="lock-icon">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" style="width:40px;height:40px">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+
+        </div>
+        <div class="lock-title">Acceso restringido</div>
+        <div class="lock-sub">Ingresa el PIN de administrador</div>
+        <div class="pin-row">
+          <input class="pin-digit" maxlength="1" id="p0" oninput="pinMove(0)" onkeydown="pinBack(event,0)"
+            inputmode="numeric" type="password">
+          <input class="pin-digit" maxlength="1" id="p1" oninput="pinMove(1)" onkeydown="pinBack(event,1)"
+            inputmode="numeric" type="password">
+          <input class="pin-digit" maxlength="1" id="p2" oninput="pinMove(2)" onkeydown="pinBack(event,2)"
+            inputmode="numeric" type="password">
+          <input class="pin-digit" maxlength="1" id="p3" oninput="pinMove(3)" onkeydown="pinBack(event,3)"
+            inputmode="numeric" type="password">
+        </div>
+        <button class="btn-unlock" onclick="checkPin()">Entrar</button>
+        <div class="lock-error" id="lockError">PIN incorrecto.</div>
+      </div>
+      <div id="adminContent" class="hidden">
+        <div class="modal-body">
+
+          <div class="modal-section">
+            <div class="modal-section-title">Aprehensores — <span id="adminCounterStoreName"
+                style="color:var(--red)">—</span></div>
+            <div class="admin-store-tabs" id="adminStoreTabs"></div>
+            <div id="apoderadosList"></div>
+
+            <!-- Panel edición apoderado -->
+            <div id="editApPanel"
+              style="display:none;background:var(--surface);border:1.5px solid var(--red-border);border-radius:var(--radius);padding:16px;margin-top:4px;margin-bottom:12px">
+              <div
+                style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px"
+                id="editApTitle">Editando aprehensor</div>
+              <div class="row-2">
+                <div class="field"><label>Nombre completo</label><input type="text" id="eapNombre"
+                    placeholder="Nombre y apellidos"></div>
+                <div class="field"><label>Cédula</label><input type="text" id="eapCC" placeholder="N° cédula"></div>
+              </div>
+              <div class="row-2">
+                <div class="field"><label>Cargo</label>
+                  <select id="eapCargo">
+                    <option>Apoderado Judicial</option>
+                    <option>Supervisor</option>
+                    <option>Lider de Seguridad Fisica</option>
+                    <option>Gerente de Tienda</option>
+                    <option>Jefe de Tienda</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+                <div class="field"><label>Edad</label><input type="number" id="eapEdad" placeholder="Ej: 34"></div>
+              </div>
+              <div class="row-2">
+                <div class="field"><label>Estado civil</label>
+                  <select id="eapEstado">
+                    <option value="">Seleccionar...</option>
+                    <option>Soltero/a</option>
+                    <option>Casado/a</option>
+                    <option>Unión libre</option>
+                    <option>Divorciado/a</option>
+                  </select>
+                </div>
+                <div class="field"><label>Nivel de educación</label>
+                  <select id="eapEducacion">
+                    <option>Bachiller</option>
+                    <option>Técnico</option>
+                    <option>Tecnólogo</option>
+                    <option>Profesional</option>
+                    <option>Especialista</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row-2">
+                <div class="field"><label>Correo electrónico</label><input type="email" id="eapCorreo"
+                    placeholder="nombre@homecenter.co"></div>
+                <div class="field"><label>Celular</label><input type="text" id="eapCelular"
+                    placeholder="Ej: 3212416812"></div>
+              </div>
+              <div class="row-2">
+                <div class="field"><label>Jefe inmediato</label><input type="text" id="eapJefe"
+                    placeholder="Nombre del jefe"></div>
+                <div class="field"><label>Dirección notificaciones</label><input type="text" id="eapDireccion"
+                    placeholder="Carrera 100 # 16-251"></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:4px">
+                <button class="btn-save-admin" style="margin-top:0" onclick="saveApEditor()">💾 Guardar
+                  aprehensor</button>
+                <button onclick="closeApEditor()"
+                  style="padding:13px 16px;border:1.5px solid #e0deda;background:white;border-radius:var(--radius);font-size:13px;font-weight:600;color:var(--ink-3);cursor:pointer;font-family:inherit">Cancelar</button>
+              </div>
+              <div class="save-confirm" id="saveApConfirm">✓ Aprehensor actualizado</div>
+            </div>
+
+            <!-- Agregar nuevo -->
+            <div style="border-top:1px solid var(--surface-2);padding-top:12px;margin-top:4px">
+              <div
+                style="font-size:11px;font-weight:700;color:var(--ink-4);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">
+                Agregar nuevo aprehensor</div>
+              <div class="add-ap-row">
+                <div class="field" style="margin-bottom:0"><label>Nombre</label><input type="text" id="newApNombre"
+                    placeholder="Nombre completo"></div>
+                <div class="field" style="margin-bottom:0"><label>Cédula</label><input type="text" id="newApCC"
+                    placeholder="N° cédula"></div>
+                <button class="btn-add-ap" onclick="addApoderado()">+ Agregar</button>
+              </div>
+              <p style="font-size:11px;color:var(--ink-4);margin-top:8px">Después de agregar, usa Editar para completar
+                todos los datos.</p>
+            </div>
+          </div>
+
+          <div class="modal-section">
+            <div class="modal-section-title">Contador de Informes — <span id="adminCounterStoreName2"
+                style="color:var(--red)">—</span></div>
+            <div style="margin-bottom:10px">Próximo informe<div class="counter-value" id="counterDisplay">—</div>
+            </div>
+            <div class="row-2" style="margin-bottom:8px">
+              <div class="field" style="margin-bottom:0"><label>Establecer desde</label><input type="number"
+                  id="counterInput" min="1" placeholder="Ej: 5"></div>
+              <div style="display:flex;align-items:flex-end"><button class="btn-add-ap" style="width:100%"
+                  onclick="setCounter()">Aplicar</button></div>
+            </div>
+            <button class="btn-reset-counter" onclick="resetCounter()">Reiniciar a 1</button>
+          </div>
+
+          <div class="modal-section">
+            <div class="modal-section-title">Cambiar PIN</div>
+            <div class="row-2">
+              <div class="field" style="margin-bottom:0"><label>Nuevo PIN</label><input type="password" id="newPin"
+                  maxlength="4" placeholder="••••" inputmode="numeric"></div>
+              <div class="field" style="margin-bottom:0"><label>Confirmar</label><input type="password" id="confirmPin"
+                  maxlength="4" placeholder="••••" inputmode="numeric"></div>
+            </div>
+          </div>
+
+          <button class="btn-save-admin" onclick="saveAdmin()">Guardar PIN</button>
+          <div class="save-confirm" id="saveConfirm">✓ Cambios guardados</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+  <script>
+
+    function setFieldError(fieldId) {
+      var el = document.getElementById(fieldId);
+      if (!el) return;
+      var field = el.closest('.field');
+      if (field) field.classList.add('field-error');
+      el.focus();
+      setTimeout(function () { if (field) field.classList.remove('field-error'); }, 3500);
+    }
+
+    // ── CONFIGURACIÓN ──────────────────────────────────────────────────────────
+    const SUPABASE_URL = 'https://smqatxliiskqsokknlvb.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_AxlGdmPOViz1iHEbOFpPfQ_i8aE-MTs';
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const DEFAULT_PIN = '0030';
+    const STORAGE_KEY = 'sodimac_apreh_v2';
+    const STORE_KEY = 'sodimac_tienda_v1'; // mismo que index.html
+
+    //Logo alto b64
+    const LOGO_ALTO_BASE64 = "data:image/png;base64,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";
+
+    const TIENDAS = {
+      cali_sur: {
+        id: 'cali_sur', num: '30', nombre: 'Homecenter Cali Sur', nombreCorto: 'Cali Sur',
+        direccion: 'Carrera 100 # 16 - 251', barrio: 'San Joaquín', localidad: 'Comuna 17',
+        departamento: 'Valle del Cauca', ciudad: 'Cali', telefono: '3212416812'
+      },
+      cali_norte: {
+        id: 'cali_norte', num: '31', nombre: 'Homecenter Cali Norte', nombreCorto: 'Cali Norte',
+        direccion: '', barrio: '', localidad: '', departamento: 'Valle del Cauca', ciudad: 'Cali', telefono: ''
+      },
+      cali_mall: {
+        id: 'cali_mall', num: '34', nombre: 'Homecenter Cali Mall Plaza', nombreCorto: 'Cali Mall Plaza',
+        direccion: '', barrio: '', localidad: '', departamento: 'Valle del Cauca', ciudad: 'Cali', telefono: ''
+      },
+      tulua: {
+        id: 'tulua', num: '33', nombre: 'Homecenter Tuluá', nombreCorto: 'Tuluá',
+        direccion: '', barrio: '', localidad: '', departamento: 'Valle del Cauca', ciudad: 'Tuluá', telefono: ''
+      },
+      palmira: {
+        id: 'palmira', num: '32', nombre: 'Homecenter Palmira', nombreCorto: 'Palmira',
+        direccion: '', barrio: '', localidad: '', departamento: 'Valle del Cauca', ciudad: 'Palmira', telefono: ''
+      }
+    };
+    const TIENDAS_LIST = Object.values(TIENDAS);
+
+    // Checklist items basado en documentos reales
+    const CHECKLIST_ITEMS = [
+      { id: 'danios', label: '¿La persona causó daños a los bienes hurtados o a su envoltura?', desc: true, defaultVal: 'NO', defaultDesc: '' },
+      { id: 'factura', label: '¿La persona aprehendida tenía factura de compra de los bienes hurtados?', desc: false, defaultVal: 'NO', defaultDesc: '' },
+      { id: 'pines', label: '¿La persona removió pines, códigos de barras o elemento de seguridad?', desc: true, defaultVal: 'NO', defaultDesc: '' },
+      { id: 'trabajador', label: '¿La persona aprehendida es trabajador(a) del almacén?', desc: false, defaultVal: 'NO', defaultDesc: '' },
+      { id: 'acompaniado', label: '¿La persona aprehendida estaba acompañada al momento de los hechos?', desc: true, defaultVal: 'NO', defaultDesc: '' },
+      { id: 'vistaAntes', label: '¿Había visto a la persona aprehendida en ocasiones anteriores en la tienda?', desc: false, defaultVal: 'NO', defaultDesc: '' },
+      { id: 'video', label: '¿Hay video o registro de lo sucedido?', desc: true, defaultVal: 'SI', defaultDesc: '' },
+      { id: 'cctv', label: '¿La zona donde sucedió el hecho cuenta con CCTV?', desc: false, defaultVal: 'SI', defaultDesc: '' },
+      { id: 'armas', label: '¿La persona aprehendida hizo uso de armas?', desc: true, defaultVal: 'NO', defaultDesc: '' },
+      { id: 'parentesco', label: '¿Tiene alguna relación de parentesco con la persona aprehendida?', desc: false, defaultVal: 'NO', defaultDesc: '' },
+    ];
+
+    // ── ESTADO ──────────────────────────────────────────────────────────────────
+    function loadState() {
+      try {
+        const r = localStorage.getItem(STORAGE_KEY);
+        if (r) return JSON.parse(r);
+      } catch (e) { }
+
+      // Estado inicial con datos de ejemplo
+      return {
+        pin: DEFAULT_PIN,
+        counters: { cali_sur: 1, cali_norte: 1, cali_mall: 1, tulua: 1, palmira: 1 },
+        apoderados: {
+          cali_sur: [{
+            id: 1,
+            nombre: 'Deivy Palacio Mauricio',
+            cc: '1094931709',
+            cargo: 'Apoderado Judicial',
+            edad: '35',
+            estado_civil: 'Casado',
+            educacion: 'Profesional',
+            celular: '3212416812',
+            correo: 'deivy@sodimac.com.co',
+            jefe_inmediato: 'Jefe de Seguridad',
+            direccion: 'Carrera 100 # 16-251'
+          }],
+          cali_norte: [],
+          cali_mall: [],
+          tulua: [],
+          palmira: []
+        }
+      };
+    }
+
+    function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { } }
+
+    let state = loadState();
+    if (!state.apoderados) state.apoderados = { cali_sur: [], cali_norte: [], cali_mall: [], tulua: [], palmira: [] };
+    let tiendaActual = localStorage.getItem(STORE_KEY) || null;
+    let adminTiendaActual = tiendaActual || 'cali_sur';
+    let currentStep = 0;
+    let relatoFormalizado = '';
+    let docData = {};
+    let aprehensoresCache = []; // cargados desde Supabase
+
+    // ── SUPABASE ─────────────────────────────────────────────────────────────────
+    async function syncFromSupabase() {
+      if (!tiendaActual) {
+        console.log('⚠️ No hay tienda seleccionada');
+        return;
+      }
+
+      try {
+        // 1. Contador
+        const counterKey = 'apreh_contador_' + tiendaActual;
+        const { data: cData } = await sb.from('config').select('value').eq('key', counterKey).single();
+        if (cData) {
+          state.counters[tiendaActual] = parseInt(cData.value) || 1;
+          console.log('✅ Contador cargado:', state.counters[tiendaActual]);
+        }
+
+        // 2. Apoderados: consultar SOLO de la tienda actual
+        const { data: aData, error } = await sb.from('apoderados')
+          .select('*')
+          .eq('tienda_id', tiendaActual)
+          .order('id');
+
+        if (error) {
+          console.error('❌ Error en consulta de apoderados:', error);
+          return;
+        }
+
+        if (aData && aData.length > 0) {
+          aprehensoresCache = aData;
+          console.log('✅ Apoderados cargados de Supabase:', aData.length);
+
+          // Actualizar estado local
+          state.apoderados[tiendaActual] = aData.map(a => ({
+            id: a.id,
+            nombre: a.nombre,
+            cc: a.cc,
+            cargo: a.cargo,
+            edad: a.edad,
+            estado_civil: a.estado_civil,
+            educacion: a.educacion,
+            celular: a.celular,
+            correo: a.correo,
+            jefe_inmediato: a.jefe_inmediato,
+            direccion: a.direccion
+          }));
+          saveState();
+        } else {
+          console.log('⚠️ No hay apoderados en Supabase para esta tienda');
+        }
+
+      } catch (e) {
+        console.log('⚠️ Sin conexión a Supabase, usando datos locales:', e.message);
+      }
+    }
+
+
+    async function saveCounter(tiendaId, num) {
+      try { await sb.from('config').upsert({ key: 'apreh_contador_' + tiendaId, value: String(num) }); } catch (e) { }
+    }
+
+    // ── TIENDA ───────────────────────────────────────────────────────────────────
+    function openStoreModal() { renderStoreModal(); document.getElementById('storeOverlay').classList.add('open'); }
+    function closeStoreModal() { document.getElementById('storeOverlay').classList.remove('open'); }
+    function closeStoreOnBg(e) { if (e.target === document.getElementById('storeOverlay')) closeStoreModal(); }
+
+    function renderStoreModal() {
+      const body = document.getElementById('storeModalBody');
+      body.innerHTML = TIENDAS_LIST.map(t => `
+    <div class="store-option ${tiendaActual === t.id ? 'selected' : ''}" onclick="selectTienda('${t.id}')">
+      <div class="store-num">${t.num}</div>
+      <div><div class="store-info-name">${t.nombre}</div><div class="store-info-id">${t.id}</div></div>
+      <div class="store-check">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          </div>
+    </div>`).join('');
+    }
+
+    async function selectTienda(tid) {
+      tiendaActual = tid; localStorage.setItem(STORE_KEY, tid); adminTiendaActual = tid;
+      closeStoreModal(); updateHeaderStore();
+      await syncFromSupabase(); refreshStoreUI();
+    }
+
+    function updateHeaderStore() {
+      const t = TIENDAS[tiendaActual]; if (!t) return;
+      document.getElementById('headerSub').textContent = t.nombre;
+      document.getElementById('btnStoreName').textContent = t.nombreCorto;
+    }
+
+    function refreshStoreUI() {
+      if (!tiendaActual) return;
+      const t = TIENDAS[tiendaActual];
+      const cnt = state.counters[tiendaActual] || 1;
+      document.getElementById('numAprehDisplay').textContent = String(cnt).padStart(3, '0');
+      document.getElementById('aprehensorStoreSub').textContent = t.nombre;
+      fillAprehensorSelect();
+      ['aprehensorSelect', 'aprehensorCC', 'aprehensorEdad', 'aprehensorEstadoCivil',
+        'aprehensorEducacion', 'aprehensorCargo', 'aprehensorCelular', 'aprehensorCorreo',
+        'aprehensorJefe', 'aprehensorDireccion'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el && el.tagName === 'SELECT') el.value = '';
+          else if (el) el.value = '';
+        });
+    }
+
+    function fillAprehensorSelect() {
+      const sel = document.getElementById('aprehensorSelect');
+      sel.innerHTML = '<option value="">Seleccionar aprehensor...</option>';
+
+      // Usar cache si tiene datos, si no usar estado local
+      let aps = [];
+
+      if (aprehensoresCache.length > 0) {
+        // Filtrar solo los de la tienda actual
+        aps = aprehensoresCache.filter(ap => ap.tienda_id === tiendaActual);
+      } else if (state.apoderados[tiendaActual]) {
+        aps = state.apoderados[tiendaActual];
+      }
+
+      console.log('📋 Apoderados para el selector:', aps.length, aps);
+
+      if (aps.length === 0) {
+        console.warn('⚠️ No hay apoderados disponibles para mostrar');
+        const opt = document.createElement('option');
+        opt.disabled = true;
+        opt.textContent = 'Sin apoderados registrados';
+        sel.appendChild(opt);
+        return;
+      }
+
+      aps.forEach(ap => {
+        const o = document.createElement('option');
+        o.value = ap.id !== undefined ? ap.id : ap.nombre;
+        o.textContent = ap.nombre;
+        sel.appendChild(o);
+      });
+    }
+
+
+    async function checkReincidente() {
+      const cc = document.getElementById('aprehendidoCC').value.trim();
+      const banner = document.getElementById('reincidenteBanner');
+      const detalle = document.getElementById('reincidenteDetalle');
+      banner.style.display = 'none';
+      if (!cc || cc.length < 4) return;
+
+      try {
+        const [resContratos, resApreh] = await Promise.all([
+          sb.from('historial_contratos').select('num_contrato, fecha_hecho, tienda_id').eq('cliente_cc', cc),
+          sb.from('historial_aprehensiones').select('num_aprehension, fecha_hecho, tienda_id').eq('cliente_cc', cc)
+        ]);
+
+        const contratos = resContratos.data || [];
+        const aprehensiones = resApreh.data || [];
+        const total = contratos.length + aprehensiones.length;
+
+        if (total === 0) return;
+
+        const tiendaNombre = (tid) => {
+          const t = TIENDAS[tid];
+          return t ? t.nombreCorto : tid;
+        };
+        const fmtFecha = (f) => {
+          if (!f) return '—';
+          const d = new Date(f + 'T12:00:00');
+          return d.toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' });
+        };
+
+        let html = 'Esta persona tiene <strong>' + total + ' incidente(s) previo(s)</strong> registrado(s):<br><br>';
+
+        if (contratos.length > 0) {
+          html += '<strong>Contratos de transacción (' + contratos.length + '):</strong><br>';
+          contratos.forEach(c => {
+            html += '&nbsp;&nbsp;· Contrato N° ' + c.num_contrato + ' — ' + fmtFecha(c.fecha_hecho) + ' — ' + tiendaNombre(c.tienda_id) + '<br>';
+          });
+        }
+
+        if (aprehensiones.length > 0) {
+          if (contratos.length > 0) html += '<br>';
+          html += '<strong>Aprehensiones (' + aprehensiones.length + '):</strong><br>';
+          aprehensiones.forEach(a => {
+            html += '&nbsp;&nbsp;· Aprehensión N° ' + a.num_aprehension + ' — ' + fmtFecha(a.fecha_hecho) + ' — ' + tiendaNombre(a.tienda_id) + '<br>';
+          });
+        }
+
+        detalle.innerHTML = html;
+        banner.style.display = 'block';
+
+      } catch (e) {
+        console.log('Error verificando reincidente:', e);
+      }
+    }
+
+    function fillAprehensor() {
+      const idx = document.getElementById('aprehensorSelect').value;
+      if (idx === '') {
+        ['aprehensorCC', 'aprehensorEdad', 'aprehensorEstadoCivil', 'aprehensorEducacion',
+          'aprehensorCargo', 'aprehensorCelular', 'aprehensorCorreo', 'aprehensorJefe', 'aprehensorDireccion'
+        ].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+        return;
+      }
+      const ap = aprehensoresCache.find(a => a.id === parseInt(idx));
+      if (!ap) return;
+      const t = TIENDAS[tiendaActual];
+      document.getElementById('aprehensorCC').value = ap.cc || '';
+      document.getElementById('aprehensorEdad').value = ap.edad || '';
+      document.getElementById('aprehensorEstadoCivil').value = ap.estado_civil || '';
+      document.getElementById('aprehensorEducacion').value = ap.educacion || 'Bachiller';
+      document.getElementById('aprehensorCargo').value = ap.cargo || 'Apoderado Judicial';
+      document.getElementById('aprehensorCelular').value = ap.celular || (t ? t.telefono : '');
+      document.getElementById('aprehensorCorreo').value = ap.correo || '';
+      document.getElementById('aprehensorJefe').value = ap.jefe_inmediato || '';
+      document.getElementById('aprehensorDireccion').value = ap.direccion || (t ? t.direccion : '');
+    }
+
+    // ── INIT ──────────────────────────────────────────────────────────────────────
+    async function init() {
+      const hoy = new Date();
+      document.getElementById('fechaDisplay').textContent = hoy.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+      document.getElementById('fechaHecho').valueAsDate = hoy;
+
+      buildChecklist();
+      addProducto();
+      addLlamada();
+      addAgente();
+
+      if (tiendaActual && TIENDAS[tiendaActual]) {
+        updateHeaderStore(); await syncFromSupabase(); refreshStoreUI();
+      } else {
+        setTimeout(() => openStoreModal(), 300);
+      }
+    }
+
+    // ── CHECKLIST ──────────────────────────────────────────────────────────────────
+    function buildChecklist() {
+      const grid = document.getElementById('checklistGrid');
+      grid.innerHTML = CHECKLIST_ITEMS.map(item => `
+    <div class="check-item ${item.defaultVal === 'SI' ? 'si-active' : 'no-active'}" id="ci_${item.id}">
+      <div class="check-label">${item.label}</div>
+      <div class="check-toggle">
+        <button class="check-btn ${item.defaultVal === 'SI' ? 'active-si' : ''}" id="btn_si_${item.id}" onclick="toggleCheck('${item.id}','SI')">SI</button>
+        <button class="check-btn ${item.defaultVal === 'NO' ? 'active-no' : ''}" id="btn_no_${item.id}" onclick="toggleCheck('${item.id}','NO')">NO</button>
+      </div>
+      ${item.desc ? `<div class="check-desc ${item.defaultVal === 'SI' ? 'visible' : ''}" id="desc_${item.id}">
+        <input type="text" id="descVal_${item.id}" placeholder="Describe..." value="${item.defaultDesc}">
+      </div>` : ''}
+    </div>`).join('');
+    }
+
+    function toggleCheck(id, val) {
+      const item = CHECKLIST_ITEMS.find(c => c.id === id);
+      const ci = document.getElementById('ci_' + id);
+      document.getElementById('btn_si_' + id).classList.toggle('active-si', val === 'SI');
+      document.getElementById('btn_no_' + id).classList.toggle('active-no', val === 'NO');
+      document.getElementById('btn_si_' + id).classList.toggle('active-no', false);
+      document.getElementById('btn_no_' + id).classList.toggle('active-si', false);
+      ci.className = 'check-item ' + (val === 'SI' ? 'si-active' : 'no-active');
+      if (item && item.desc) {
+        const desc = document.getElementById('desc_' + id);
+        desc.classList.toggle('visible', val === 'SI');
+      }
+    }
+
+    function getCheckVal(id) {
+      return document.getElementById('btn_si_' + id)?.classList.contains('active-si') ? 'SI' : 'NO';
+    }
+    function getCheckDesc(id) {
+      const el = document.getElementById('descVal_' + id); return el ? el.value.trim() : '';
+    }
+
+    // ── PRODUCTOS DINÁMICOS ──────────────────────────────────────────────────────
+    let prodIdx = 0;
+    function addProducto() {
+      const c = document.getElementById('productosContainer');
+      const i = prodIdx++;
+      const n = c.children.length + 1;
+      const div = document.createElement('div');
+      div.className = 'policia-card'; div.id = 'prod_' + i;
+      div.innerHTML =
+        '<div class="policia-card-header">' +
+        '<span class="policia-num-badge">Producto ' + n + '</span>' +
+        (c.children.length > 0 ? '<button class="btn-remove-row" onclick="removeItem(\'prod_' + i + '\',\'productosContainer\')" title="Eliminar">✕</button>' : '') +
+        '</div>' +
+        '<div class="row-3">' +
+        '<div class="field"><label>Cantidad</label>' +
+        '<input type="number" id="prodCant_' + i + '" value="1" min="1" step="1" oninput="this.value=Math.abs(parseInt(this.value)||1);calcTotalProd(' + i + ')"></div>' +
+        '<div class="field"><label>Descripción <span class="req">*</span></label>' +
+        '<input type="text" id="prodDesc_' + i + '" placeholder="Ej: Alicate De Corte Lateral..."></div>' +
+        '<div class="field"><label>Ref. SKU <span class="req">*</span></label>' +
+        '<input type="text" id="prodRef_' + i + '" placeholder="Ej: 877213" oninput="this.value=this.value.replace(/[^0-9]/g,\'\')"></div>' +
+        '</div>' +
+        '<div class="row-2">' +
+        '<div class="field" style="margin-bottom:0"><label>Valor Unitario ($)</label>' +
+        '<input type="number" id="prodValUnit_' + i + '" placeholder="Ej: 299900" min="0" inputmode="numeric" oninput="this.value=Math.abs(parseFloat(this.value)||0)||\'\';;calcTotalProd(' + i + ')"></div>' +
+        '<div class="field" style="margin-bottom:0"><label>Valor Total ($)</label>' +
+        '<input type="text" id="prodValTotal_' + i + '" readonly placeholder="Automático" style="background:var(--green-soft);border-color:var(--green-border);color:var(--green);font-weight:700"></div>' +
+        '</div>';
+      c.appendChild(div);
+    }
+
+    function calcTotalProd(i) {
+      const cant = Math.abs(parseInt(document.getElementById('prodCant_' + i)?.value) || 0);
+      const unit = Math.abs(parseFloat(document.getElementById('prodValUnit_' + i)?.value) || 0);
+      const tot = document.getElementById('prodValTotal_' + i);
+      if (!tot) return;
+      if (cant > 0 && unit > 0) {
+        tot.value = '$' + Math.round(cant * unit).toLocaleString('es-CO');
+      } else {
+        tot.value = '';
+      }
+    }
+
+    function getProductos() {
+      const c = document.getElementById('productosContainer');
+      return Array.from(c.children).map(div => {
+        const i = div.id.replace('prod_', '');
+        const cant = document.getElementById('prodCant_' + i)?.value || '1';
+        return {
+          cant: cant,
+          desc: document.getElementById('prodDesc_' + i)?.value || '',
+          ref: document.getElementById('prodRef_' + i)?.value || '',
+          valUnit: document.getElementById('prodValUnit_' + i)?.value || '',
+          valTotal: document.getElementById('prodValTotal_' + i)?.value || String(parseFloat(cant) * parseFloat(document.getElementById('prodValUnit_' + i)?.value || 0))
+        };
+      }).filter(p => p.desc);
+    }
+
+    function getTotalProductos() {
+      return getProductos().reduce((s, p) => s + (parseFloat(p.valTotal) || 0), 0);
+    }
+
+    // ── LLAMADAS DINÁMICAS ────────────────────────────────────────────────────────
+    let llamIdx = 0;
+    function addLlamada() {
+      const c = document.getElementById('llamadasContainer');
+      const i = llamIdx++;
+      const n = c.children.length + 1;
+      const div = document.createElement('div');
+      div.id = 'llam_' + i;
+      div.innerHTML = `
+    <div style="display:grid;grid-template-columns:60px 100px 1fr 140px 36px;gap:8px;margin-bottom:10px;align-items:end">
+      ${n === 1 ? `<div><label>Llamada</label><input type="text" value="${n}" id="llamNum_${i}" style="text-align:center"></div>`
+          : `<div><label>Llamada</label><input type="text" value="${n}" id="llamNum_${i}" style="text-align:center"></div>`}
+      <div><label>Hora</label><input type="time" id="llamHora_${i}"></div>
+      <div><label>Lugar llamado</label><input type="text" id="llamLugar_${i}" placeholder="Ej: Cuadrante" value="Cuadrante"></div>
+      <div><label>Teléfono</label><input type="text" id="llamTel_${i}" placeholder="Ej: 3174071932"></div>
+      ${c.children.length > 0 ? `<div style="padding-bottom:2px"><button class="btn-remove-row" onclick="removeItem('llam_${i}','llamadasContainer')">✕</button></div>` : '<div></div>'}
+    </div>`;
+      c.appendChild(div);
+    }
+
+    function getLlamadas() {
+      return Array.from(document.getElementById('llamadasContainer').children).map(div => {
+        const i = div.id.replace('llam_', '');
+        return { num: document.getElementById('llamNum_' + i)?.value || '1', hora: document.getElementById('llamHora_' + i)?.value || '', lugar: document.getElementById('llamLugar_' + i)?.value || '', tel: document.getElementById('llamTel_' + i)?.value || '' };
+      });
+    }
+
+    // ── AGENTES DINÁMICOS ─────────────────────────────────────────────────────────
+    let agteIdx = 0;
+    function addAgente() {
+      const c = document.getElementById('agentesContainer');
+      const i = agteIdx++;
+      const div = document.createElement('div');
+      div.className = 'policia-card'; div.id = 'agte_' + i;
+      div.innerHTML = `
+    <div class="policia-card-header">
+      <span class="policia-num-badge">Agente ${c.children.length + 1}</span>
+      ${c.children.length > 0 ? `<button class="btn-remove-row" onclick="removeItem('agte_${i}','agentesContainer')">✕</button>` : ''}
+    </div>
+    <div class="row-3">
+      <div class="field"><label>Hora Llegada <span class="req">*</span></label><input type="time" id="agteHora_${i}"></div>
+      <div class="field"><label>Nombre del Agente <span class="req">*</span></label><input type="text" id="agteNombre_${i}" placeholder="Nombre completo"></div>
+      <div class="field"><label>Placa <span class="req">*</span></label><input type="text" id="agtePlaca_${i}" placeholder="Ej: 163958"></div>
+    </div>
+    <div class="field" style="margin-bottom:0"><label>Rango</label>
+      <select id="agteRango_${i}">
+        <option>Subintendente</option><option>Intendente</option><option>Patrullero</option>
+        <option>Cabo</option><option>Subteniente</option><option>Teniente</option><option>Otro</option>
+      </select>
+    </div>`;
+      c.appendChild(div);
+    }
+
+    function getAgentes() {
+      return Array.from(document.getElementById('agentesContainer').children).map(div => {
+        const i = div.id.replace('agte_', '');
+        return { hora: document.getElementById('agteHora_' + i)?.value || '', nombre: document.getElementById('agteNombre_' + i)?.value || '', placa: document.getElementById('agtePlaca_' + i)?.value || '', rango: document.getElementById('agteRango_' + i)?.value || '' };
+      }).filter(a => a.nombre);
+    }
+
+    // ── TESTIGOS DINÁMICOS ────────────────────────────────────────────────────────
+    let testIdx = 0;
+    function addTestigo() {
+      const c = document.getElementById('testigosContainer');
+      const i = testIdx++;
+      const div = document.createElement('div');
+      div.className = 'policia-card'; div.id = 'test_' + i;
+      div.innerHTML = `
+    <div class="policia-card-header">
+      <span class="policia-num-badge">Testigo ${c.children.length + 1}</span>
+      <button class="btn-remove-row" onclick="removeItem('test_${i}','testigosContainer')">✕</button>
+    </div>
+    <div class="row-2">
+      <div class="field"><label>Nombre</label><input type="text" id="testNombre_${i}" placeholder="Nombre completo"></div>
+      <div class="field"><label>Cédula</label><input type="text" id="testCC_${i}" placeholder="N° cédula"></div>
+    </div>
+    <div class="row-2">
+      <div class="field"><label>Cargo</label><input type="text" id="testCargo_${i}" placeholder="Ej: Supervisor"></div>
+      <div class="field" style="margin-bottom:0"><label>Teléfono</label><input type="text" id="testTel_${i}" placeholder="Celular"></div>
+    </div>`;
+      c.appendChild(div);
+    }
+
+    function getTestigos() {
+      return Array.from(document.getElementById('testigosContainer').children).map(div => {
+        const i = div.id.replace('test_', '');
+        return { nombre: document.getElementById('testNombre_' + i)?.value || '', cc: document.getElementById('testCC_' + i)?.value || '', cargo: document.getElementById('testCargo_' + i)?.value || '', tel: document.getElementById('testTel_' + i)?.value || '' };
+      }).filter(t => t.nombre);
+    }
+
+    function removeItem(id, containerId) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+
+    // ── STEP NAV ──────────────────────────────────────────────────────────────────
+    function showStep(n) {
+      ['step0', 'step1', 'step2', 'step3', 'step4', 'step5', 'stepSuccess'].forEach(id => document.getElementById(id).classList.add('hidden'));
+      const target = n === 'Success' ? 'stepSuccess' : 'step' + n;
+      document.getElementById(target).classList.remove('hidden');
+      if (n !== 'Success') {
+        for (let i = 0; i < 6; i++) {
+          const t = document.getElementById('tab' + i);
+          t.classList.remove('active', 'done');
+          if (i === n) t.classList.add('active');
+          else if (i < n) t.classList.add('done');
+        }
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goBack(from) { currentStep = from - 1; showStep(currentStep); }
+    function goNext(from) {
+      if (!tiendaActual) { openStoreModal(); return; }
+      if (!validateStep(from)) return;
+      currentStep = from + 1;
+      if (currentStep === 5) buildPreview();
+      showStep(currentStep);
+    }
+
+    function setFieldError(fieldId) {
+      var el = document.getElementById(fieldId);
+      if (!el) return;
+      var field = el.closest('.field');
+      if (field) field.classList.add('field-error');
+      el.focus();
+      setTimeout(function () { if (field) field.classList.remove('field-error'); }, 3500);
+    }
+
+    function validateStep(step) {
+      const required = {
+        0: [['aprehensorSelect', 'Selecciona un aprehensor']],
+        1: [
+          ['aprehendidoNombre', 'Ingresa el nombre del aprehendido'],
+          ['aprehendidoCC', 'Ingresa la cédula'],
+          ['aprehendidoNacionalidad', 'Ingresa la nacionalidad'],
+          ['aprehendidoExpedida', 'Indica dónde fue expedida la cédula'],
+          ['aprehendidoEdad', 'Ingresa la edad'],
+          ['aprehendidoEstadoCivil', 'Selecciona el estado civil'],
+          ['aprehendidoDia', 'Ingresa el día de nacimiento'],
+          ['aprehendidoMes', 'Selecciona el mes de nacimiento'],
+          ['aprehendidoAnio', 'Ingresa el año de nacimiento'],
+          ['aprehendidoOcupacion', 'Ingresa la ocupación']
+        ],
+        2: [['fechaHecho', 'Ingresa la fecha del hecho'], ['horaHecho', 'Ingresa la hora'], ['seccion', 'Ingresa la sección'], ['pasillo', 'Ingresa el pasillo'], ['descripcionPersona', 'Describe la ropa de la persona']],
+        3: [], // productos se validan por JS
+        4: [], // agentes validados a continuación
+      };
+      if (step === 3) {
+        const prods = getProductos();
+        if (prods.length === 0) {
+          document.getElementById('productosContainer').style.animation = 'fieldShake 0.45s ease';
+          setTimeout(() => document.getElementById('productosContainer').style.animation = '', 500);
+          alert('Agrega al menos un producto'); return false;
+        }
+        for (const p of prods) {
+          if (!p.ref) { alert('Ingresa la referencia/SKU de todos los productos'); return false; }
+        }
+      }
+      if (step === 4) {
+        const agentes = getAgentes();
+        if (agentes.length === 0) {
+          alert('Agrega al menos un agente de policía');
+          return false;
+        }
+
+        // Validación individual de campos de agentes
+        const container = document.getElementById('agentesContainer');
+        const cards = container.querySelectorAll('.policia-card');
+        for (let card of cards) {
+          const i = card.id.replace('agte_', '');
+          const hora = document.getElementById('agteHora_' + i);
+          const nombre = document.getElementById('agteNombre_' + i);
+          const placa = document.getElementById('agtePlaca_' + i);
+
+          if (!hora.value.trim()) { setFieldError(hora.id); alert('Ingresa la hora de llegada del agente'); return false; }
+          if (!nombre.value.trim()) { setFieldError(nombre.id); alert('Ingresa el nombre del agente'); return false; }
+          if (!placa.value.trim()) { setFieldError(placa.id); alert('Ingresa la placa del agente'); return false; }
+        }
+      }
+      const reqs = required[step] || [];
+      for (const [id, msg] of reqs) {
+        const el = document.getElementById(id);
+        if (!el || !el.value.trim()) {
+          setFieldError(id); alert(msg); return false;
+        }
+      }
+      return true;
+    }
+
+    // ── IA – RELATO ───────────────────────────────────────────────────────────────
+    function validateBeforeAI() {
+      const campos = [
+        { id: 'fechaHecho', label: 'Fecha del hecho' }, { id: 'horaHecho', label: 'Hora' },
+        { id: 'seccion', label: 'Sección' }, { id: 'pasillo', label: 'Pasillo' },
+        { id: 'descripcionPersona', label: 'Descripción de la persona' },
+      ];
+      const faltantes = campos.filter(c => !document.getElementById(c.id)?.value.trim());
+      const prods = getProductos();
+      if (prods.length === 0) faltantes.push({ label: 'Al menos un producto' });
+      const warn = document.getElementById('aiValidationWarn');
+      const list = document.getElementById('aiValidationList');
+      if (faltantes.length > 0) {
+        list.textContent = faltantes.map(c => c.label).join(', ');
+        warn.style.display = 'block';
+        faltantes.forEach(c => {
+          if (c.id) setFieldError(c.id);
+        });
+        return false;
+      }
+      warn.style.display = 'none'; return true;
+    }
+
+    async function formalizarRelato() {
+      if (!validateBeforeAI()) return;
+
+      const libre = document.getElementById('relatoLibre').value.trim();
+      const fecha = document.getElementById('fechaHecho').value;
+      const hora = document.getElementById('horaHecho').value;
+      const seccion = document.getElementById('seccion').value;
+      const pasillo = document.getElementById('pasillo').value;
+      const ropa = document.getElementById('descripcionPersona').value;
+      const prods = getProductos();
+      const aprehIdx = document.getElementById('aprehensorSelect').value;
+      const aprehNombre = aprehIdx !== '' ? (aprehensoresCache.find(a => a.id === parseInt(aprehIdx))?.nombre || '') : '';
+      const aprehCargo = document.getElementById('aprehensorCargo').value;
+      const tienda = TIENDAS[tiendaActual];
+
+      // ── Normalizar sexo ──
+      const sexoRaw = (document.getElementById('sexo')?.value || '').toLowerCase().trim();
+      const sexoMap = {
+        'masculino': 'masculino', 'm': 'masculino', 'hombre': 'masculino', 'male': 'masculino',
+        'femenino': 'femenino', 'f': 'femenino', 'mujer': 'femenino', 'female': 'femenino',
+        'femenina': 'femenino', 'hombr': 'masculino', 'himbre': 'masculino', 'mijer': 'femenino'
+      };
+      const sexo = sexoMap[sexoRaw] || (sexoRaw ? sexoRaw : 'masculino');
+      const esMasc = sexo !== 'femenino';
+      const articulo = esMasc ? 'un ciudadano' : 'una ciudadana';
+      const tratamiento = esMasc ? 'el señor' : 'la señora';
+      const detenerlo = esMasc ? 'detenerlo' : 'detenerla';
+      const elLa = esMasc ? 'el cual' : 'la cual';
+
+      // Checklist
+      const danioBienes = getCheckVal('danios');
+      const danioBienesDesc = getCheckDesc('danios');
+      const removioPines = getCheckVal('pines');
+      const removioPinesDesc = getCheckDesc('pines');
+      const hayVideo = getCheckVal('video');
+      const hayCCTV = getCheckVal('cctv');
+      const esTrabajador = getCheckVal('trabajador');
+      const ibaCon = getCheckVal('acompaniado');
+
+      const fechaFmt = fecha ? new Date(fecha + 'T12:00:00').toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' }) : 'la fecha indicada';
+      const productosStr = prods.map(p => p.cant + ' unidad(es) de "' + p.desc + '" (Ref. ' + p.ref + ')').join(', ');
+
+      const prompt = 'Eres asistente legal de Sodimac Colombia. Redacta el RELATO DE LOS HECHOS para un informe de aprehension en situacion de flagrancia. Estilo formal, claro, en primera persona (el aprehensor habla), lenguaje judicial colombiano.\n\n' +
+        'EJEMPLO DE ESTRUCTURA (adaptalo con los datos reales, no copies literalmente):\n' +
+        '"El dia de hoy ' + fechaFmt + ' siendo aproximadamente ' + (hora || 'la hora indicada') + ' horas, yo ' + (aprehNombre || 'el aprehensor') + ' me encontraba cumpliendo con mis funciones como ' + (aprehCargo || 'supervisor') + ' en ' + (tienda ? tienda.nombre : 'la tienda') + '. En ese momento observe a ' + articulo + ' que viste ' + (ropa || 'ropa no especificada') + ' quien intentaba salir de la tienda. Una vez traspaso las antenas de seguridad, procedi a ' + detenerlo + ' y le realice una inspeccion visual, preguntandole si llevaba productos de la tienda; manifesto que no. Procedi a llamar a CUOS para que revisaran los videos; me indicaron que ' + tratamiento + ' tomo ' + (productosStr || 'el producto') + ' y lo oculto. Le indique que entregara el producto, ' + elLa + ' hizo. Solicite la factura y me indico que no la tiene. Verifique con el inventario y corrobore que el producto pertenece a la tienda y no ha sido cancelado."\n\n' +
+        'DATOS REALES A USAR:\n' +
+        '- Fecha: ' + fechaFmt + '\n' +
+        '- Hora: ' + (hora || 'no especificada') + '\n' +
+        '- Tienda: ' + (tienda ? tienda.nombre : 'no especificada') + '\n' +
+        '- Aprehensor: ' + (aprehNombre || 'no especificado') + ', cargo: ' + (aprehCargo || 'supervisor') + '\n' +
+        '- Seccion: ' + (seccion || 'no especificada') + ', ' + (pasillo || '') + '\n' +
+        '- Sexo del aprehendido: ' + sexo + ' — usa SIEMPRE "' + tratamiento + '" para referirte a esta persona\n' +
+        '- Ropa: ' + (ropa || 'no especificada') + '\n' +
+        '- Productos: ' + (productosStr || 'no especificados') + '\n' +
+        '- Causo danos: ' + danioBienes + (danioBienesDesc ? ' — ' + danioBienesDesc : '') + '\n' +
+        '- Removio pines/tags: ' + removioPines + (removioPinesDesc ? ' — ' + removioPinesDesc : '') + '\n' +
+        '- Hay video/CCTV: ' + hayVideo + '/' + hayCCTV + '\n' +
+        '- Es trabajador del almacen: ' + esTrabajador + '\n' +
+        '- Iba acompanado: ' + ibaCon + '\n' +
+        '- Notas del aprehensor: "' + (libre || 'sin notas adicionales') + '"\n\n' +
+        'INSTRUCCIONES OBLIGATORIAS:\n' +
+        '1. Usa los datos reales de arriba. Nunca dejes un campo sin resolver.\n' +
+        '2. NUNCA uses corchetes [], barras /, ni texto como [hombre/mujer] o [fecha]. Si un dato falta, usa una descripcion generica coherente.\n' +
+        '3. El sexo es ' + sexo + '. Usa SIEMPRE "' + tratamiento + '" — nunca uses ambos generos ni barras.\n' +
+        '4. Si hay errores ortograficos en los datos (ej: himbre, mijer, femenina), corrígelos automaticamente.\n' +
+        '5. Si es trabajador del almacen, mencionarlo explicitamente en el relato.\n' +
+        '6. Si removio pines/tags, incluirlo (ej: arranco el pin de seguridad).\n' +
+        '7. Si hay danos, mencionarlos (ej: rompio el empaque).\n' +
+        '8. Integra las notas del aprehensor de forma natural y formal.\n' +
+        '9. NO menciones el valor monetario del producto.\n' +
+        '10. Responde UNICAMENTE con el texto del relato. Sin titulo, sin introduccion, sin explicaciones.';
+
+      const btn = document.getElementById('btnFormalize');
+      btn.disabled = true;
+      document.getElementById('aiLoading').classList.remove('hidden');
+      document.getElementById('aiResult').style.display = 'none';
+
+      try {
+        const res = await fetch('/api/claude', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt })
+        });
+        if (!res.ok) { const e = await res.json(); throw new Error(e.error || 'Error API'); }
+        const data = await res.json();
+        const texto = data.texto.trim();
+        relatoFormalizado = texto;
+        document.getElementById('aiResult').style.display = 'block';
+        try { typewriterEffect(document.getElementById('aiResultText'), texto, 8); } catch (e) { document.getElementById('aiResultText').textContent = texto; }
+      } catch (e) {
+        alert('Error al conectar con la IA: ' + e.message + '\nPuedes escribir el relato manualmente.');
+      } finally {
+        document.getElementById('aiLoading').classList.add('hidden');
+        btn.disabled = false;
+      }
+    }
+
+    function editarRelato() {
+      if (typewriterInterval) {
+        clearInterval(typewriterInterval); typewriterInterval = null;
+      }
+      document.getElementById('aiResultText').classList.remove('typing');
+      document.getElementById('aiResult').style.display = 'none';
+      document.getElementById('relatoLibre').value = relatoFormalizado;
+      relatoFormalizado = '';
+    }
+
+    function getRelato() {
+      return relatoFormalizado || document.getElementById('relatoLibre').value || '[Relato de los hechos]';
+    }
+
+    // ── PREVIEW & DOC ─────────────────────────────────────────────────────────────
+    function fmtMoney(n) { return n > 0 ? '$\u00a0' + Math.round(n).toLocaleString('es-CO') : '—'; }
+    function fmt2(v) { return v ? String(v).padStart(2, '0') : '__'; }
+
+    function buildPreview() {
+      const aprehIdx = document.getElementById('aprehensorSelect').value;
+      const ap = aprehIdx !== '' ? (aprehensoresCache.find(a => a.id === parseInt(aprehIdx)) || {}) : {};
+      const t = TIENDAS[tiendaActual] || {};
+      const hoy = new Date().toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+      const cnt = state.counters[tiendaActual] || 1;
+      const num = String(cnt).padStart(3, '0');
+      const prods = getProductos();
+      const totalVal = getTotalProductos();
+
+      docData = {
+        num, hoy, ap: {
+          nombre: ap?.nombre || '___',
+          cc: document.getElementById('aprehensorCC').value || '___',
+          edad: document.getElementById('aprehensorEdad').value || '___',
+          estadoCivil: document.getElementById('aprehensorEstadoCivil').value || '___',
+          educacion: document.getElementById('aprehensorEducacion').value || 'Bachiller',
+          cargo: document.getElementById('aprehensorCargo').value || '___',
+          celular: document.getElementById('aprehensorCelular').value || '___',
+          correo: document.getElementById('aprehensorCorreo').value || '___',
+          jefe: document.getElementById('aprehensorJefe').value || '___',
+          direccion: document.getElementById('aprehensorDireccion').value || '___',
+          tiendaNombre: t.nombre || '___',
+        },
+        aprehendido: {
+          nombre: document.getElementById('aprehendidoNombre').value || '___',
+          cc: document.getElementById('aprehendidoCC').value || '___',
+          expedida: document.getElementById('aprehendidoExpedida').value || 'Cali',
+          nac: document.getElementById('aprehendidoNacionalidad').value || '___',
+          edad: document.getElementById('aprehendidoEdad').value || '___',
+          estadoCivil: document.getElementById('aprehendidoEstadoCivil').value || '___',
+          dia: document.getElementById('aprehendidoDia').value || '__',
+          mes: document.getElementById('aprehendidoMes').value || '___',
+          anio: document.getElementById('aprehendidoAnio').value || '____',
+          ocupacion: document.getElementById('aprehendidoOcupacion').value || '___',
+        },
+        hechos: {
+          fecha: document.getElementById('fechaHecho').value,
+          fechaFmt: document.getElementById('fechaHecho').value ? new Date(document.getElementById('fechaHecho').value + 'T12:00:00').toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' }) : '___',
+          hora: document.getElementById('horaHecho').value || '___',
+          seccion: document.getElementById('seccion').value || '___',
+          pasillo: document.getElementById('pasillo').value || '___',
+          lugarApreh: document.getElementById('lugarAprehension').value || '___',
+          dirigida: document.getElementById('dirigidaDespues').value || '___',
+          manifes: document.getElementById('manifestaciones').value || '___',
+          ropa: document.getElementById('descripcionPersona').value || '___',
+        },
+        checklist: CHECKLIST_ITEMS.map(item => ({
+          label: item.label, val: getCheckVal(item.id),
+          desc: item.desc ? getCheckDesc(item.id) : ''
+        })),
+        prods, totalVal,
+        devActa: document.getElementById('devolucionActa').value,
+        aptoVenta: document.getElementById('aptoVenta').value,
+        relato: getRelato(),
+        llamadas: getLlamadas(),
+        agentes: getAgentes(),
+        horaConducida: document.getElementById('horaConducida').value || '___',
+        actuacion: document.getElementById('actuacionPolicial').value || '',
+        testigos: getTestigos(),
+        tienda: t,
+      };
+      document.getElementById('previewBody').innerHTML = buildDocHTML(docData);
+    }
+
+    function buildDocHTML(d) {
+      const chkRow = (item) => `
+    <tr>
+      <td style="padding:3px 6px;font-size:11px;line-height:1.4;border:1px solid #888">${item.label}</td>
+      <td style="text-align:center;border:1px solid #888;width:30px;font-size:11px">${item.val === 'SI' ? 'X' : ''}</td>
+      <td style="text-align:center;border:1px solid #888;width:30px;font-size:11px">${item.val === 'NO' ? 'X' : ''}</td>
+    </tr>
+    ${item.val === 'SI' && item.desc ? `<tr><td colspan="3" style="padding:2px 8px;font-size:11px;color:#444;border:1px solid #888;border-top:none">En caso afirmativo: ${item.desc}</td></tr>` : ''}`;
+
+      const prodRows = d.prods.map(p => `
+    <tr>
+      <td style="border:1px solid #888;padding:4px 6px;text-align:center">${p.cant}</td>
+      <td style="border:1px solid #888;padding:4px 6px">${p.desc}</td>
+      <td style="border:1px solid #888;padding:4px 6px;text-align:right">${p.valUnit ? fmtMoney(parseFloat(p.valUnit)) : ''}</td>
+      <td style="border:1px solid #888;padding:4px 6px;text-align:center">${p.ref}</td>
+      <td style="border:1px solid #888;padding:4px 6px;text-align:right">${p.valTotal ? fmtMoney(parseFloat(p.valTotal)) : ''}</td>
+    </tr>`).join('');
+
+      const llamadasRows = d.llamadas.map(l => `
+    <tr>
+      <td style="border:1px solid #888;padding:3px 6px;text-align:center">${l.num}</td>
+      <td style="border:1px solid #888;padding:3px 6px">${l.hora}</td>
+      <td style="border:1px solid #888;padding:3px 6px">${l.lugar}</td>
+      <td style="border:1px solid #888;padding:3px 6px">${l.tel}</td>
+      <td style="border:1px solid #888;padding:3px 6px"></td>
+    </tr>`).join('');
+
+      const agentesRows = d.agentes.map(a => `
+    <tr>
+      <td style="border:1px solid #888;padding:3px 6px">${a.hora}</td>
+      <td style="border:1px solid #888;padding:3px 6px">${a.nombre}</td>
+      <td style="border:1px solid #888;padding:3px 6px">${a.placa}</td>
+      <td style="border:1px solid #888;padding:3px 6px">${a.rango}</td>
+    </tr>`).join('');
+
+      const testigosRows = d.testigos.length > 0 ? d.testigos.map(t => `
+    <tr>
+      <td style="border:1px solid #888;padding:3px 6px">${t.nombre}</td>
+      <td style="border:1px solid #888;padding:3px 6px">${t.cc}</td>
+      <td style="border:1px solid #888;padding:3px 6px">${t.cargo}</td>
+      <td style="border:1px solid #888;padding:3px 6px"></td>
+      <td style="border:1px solid #888;padding:3px 6px">${t.tel}</td>
+    </tr>`) : [`<tr><td colspan="5" style="border:1px solid #888;padding:4px 6px;font-size:11px;color:#999">Sin testigos adicionales</td></tr>`];
+
+      return `
+  <style>
+    .adoc{font-family:'Times New Roman',serif;font-size:12px;line-height:1.6;color:#111;}
+    .adoc table{width:100%;border-collapse:collapse;}
+    .adoc td,th{font-size:11.5px;}
+    .adoc .section-title{font-weight:700;text-decoration:underline;text-transform:uppercase;text-align:center;margin:14px 0 8px;font-size:12px;}
+    .adoc .legal-para{margin:8px 0;text-align:justify;font-size:11.5px;line-height:1.6;}
+  </style>
+  <div class="adoc">
+    <table style="margin-bottom:0">
+      <tr>
+        <td style="width:55%;border:1px solid #555;padding:6px 10px;vertical-align:middle">
+          <img src="${LOGO_ALTO_BASE64}" style="height:45px; width:auto; object-fit:contain" alt="ALTO">
+          <div style="font-size:9px;font-weight:700;margin-top:3px">Empresa de Vigilancia: ${d.ap.tiendaNombre}</div>
+        </td>
+        <td style="border:1px solid #555;text-align:center;font-weight:700;font-size:12px;padding:6px">
+          INFORME DE APREHENSIÓN EN SITUACIÓN DE FLAGRANCIA
+        </td>
+        <td style="width:30%;border:1px solid #555;vertical-align:top;padding:0">
+          <div style="border-bottom:1px solid #555;padding:2px 6px;font-size:9px">Ruta: -FR-SAJ-020</div>
+          <div style="border-bottom:1px solid #555;padding:2px 6px;font-size:9px"><strong>N° Informe:</strong> ${d.num}</div>
+          <div style="padding:2px 6px;font-size:9px"><strong>Fecha:</strong> ${d.hoy}</div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="section-title">DATOS DE LA PERSONA QUE REALIZÓ LA APREHENSIÓN</div>
+    <table style="margin-bottom:10px">
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px;font-size:11px;width:35%"><strong>NOMBRE:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px;font-size:11px" colspan="3">${d.ap.nombre}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>N° DE IDENTIFICACIÓN:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.ap.cc}</td>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>EDAD:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.ap.edad} años</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>ESTADO CIVIL:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.ap.estadoCivil}</td>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>NIVEL DE EDUCACIÓN:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.ap.educacion}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>CARGO:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.ap.cargo}</td>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>CELULAR:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.ap.celular}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>CORREO ELECTRÓNICO:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.ap.correo}</td>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>JEFE INMEDIATO:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.ap.jefe}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>DIRECCIÓN (TIENDA):</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px" colspan="3">${d.ap.direccion}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>LUGAR DE RESIDENCIA:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px" colspan="3">${d.ap.tiendaNombre}</td>
+      </tr>
+    </table>
+
+    <p class="legal-para">Manifiesto, en mi calidad de aprehensor dentro de este asunto basado en el artículo 302 del Código de Procedimiento Penal Colombiano que conozco acerca de las sanciones penales impuestas a quien incurra en falsa denuncia (Arts. 435 y 436 del Código Penal). De la misma forma expreso que esta declaración la hago con fundamento en los artículos 33 de la Constitución Política y 67, 68, 69 y 74 inc. 1 del Código de Procedimiento Penal.</p>
+    <p class="legal-para">Doy mi autorización para que mis datos personales aquí consignados, sean tratados con la finalidad de ser citado para posteriores diligencias y audiencias penales que se desarrollen en virtud del proceso de judicialización, iniciado mediante el presente informe de aprehensión. Asimismo, manifiesto que conozco mis derechos como titular de la información. Lo anterior, teniendo en cuenta lo estipulado por la Ley 1581 de 2012 y su Decreto reglamentario 1377 de 2013.</p>
+    <p class="legal-para">Respetuosamente, me permito presentar INFORME DETALLADO DE LAS CIRCUNSTANCIAS EN QUE SE PRODUJO LA APREHENSIÓN de conformidad con el artículo 302 del Código de Procedimiento Penal Colombiano en los siguientes términos:</p>
+
+    <div class="section-title">DATOS DE LA PERSONA APREHENDIDA</div>
+    <table style="margin-bottom:10px">
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px;width:35%"><strong>NOMBRE:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px" colspan="3">${d.aprehendido.nombre}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>N° DE IDENTIFICACIÓN C.E:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.aprehendido.cc}</td>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>Expedida en:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.aprehendido.expedida}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>NACIONALIDAD:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.aprehendido.nac}</td>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>EDAD:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.aprehendido.edad} años</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>FECHA DE NACIMIENTO:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px" colspan="3">Día ${d.aprehendido.dia} — Mes ${d.aprehendido.mes} — Año ${d.aprehendido.anio}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>ESTADO CIVIL:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.aprehendido.estadoCivil}</td>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>OCUPACIÓN:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.aprehendido.ocupacion}</td>
+      </tr>
+    </table>
+
+    <div class="section-title">HECHOS PRESENTADOS</div>
+    <table style="margin-bottom:6px">
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px;width:35%"><strong>FECHA DE LOS HECHOS:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.hechos.fechaFmt}</td>
+        <td style="border:1px solid #888;padding:3px 6px;width:25%"><strong>HORA:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.hechos.hora} horas</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>SECCIÓN:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.hechos.seccion}</td>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>PASILLO:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.hechos.pasillo}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>LUGAR DE LOS HECHOS:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.tienda?.nombre || '___'}</td>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>DIRECCIÓN:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.tienda?.direccion || '___'}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>BARRIO:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.tienda?.barrio || '___'}</td>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>LOCALIDAD:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.tienda?.localidad || '___'}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>DEPARTAMENTO:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.tienda?.departamento || 'Valle del Cauca'}</td>
+        <td style="border:1px solid #888;padding:3px 6px"><strong>CIUDAD:</strong></td>
+        <td style="border:1px solid #888;padding:3px 6px">${d.tienda?.ciudad || 'Cali'}</td>
+      </tr>
+    </table>
+    <p style="font-size:11px;margin:4px 0"><strong>LUGAR EN EL QUE SE EFECTUÓ LA APREHENSIÓN:</strong> ${d.tienda?.nombre || ''}, ${d.hechos.lugarApreh}</p>
+    <p style="font-size:11px;margin:4px 0"><strong>LUGAR AL QUE FUE DIRIGIDA LA PERSONA DESPUÉS:</strong> ${d.hechos.dirigida}</p>
+    <p style="font-size:11px;margin:4px 0 10px"><strong>MANIFESTACIONES AL SER APREHENDIDA:</strong> ${d.hechos.manifes}</p>
+
+    <table style="margin-bottom:10px">
+      <thead><tr>
+        <th style="border:1px solid #888;padding:4px 6px;text-align:left;background:#f0f0f0;font-size:11px">Pregunta</th>
+        <th style="border:1px solid #888;padding:4px 6px;text-align:center;background:#f0f0f0;font-size:11px;width:30px">SI</th>
+        <th style="border:1px solid #888;padding:4px 6px;text-align:center;background:#f0f0f0;font-size:11px;width:30px">NO</th>
+      </thead>
+      <tbody>${d.checklist.map(item => chkRow(item)).join('')}</tbody>
+    </table>
+
+    <div class="section-title">ELEMENTOS OBJETO DE LA DEFRAUDACIÓN</div>
+    <p style="font-size:11px;margin-bottom:6px">En el caso respecto del cual me permito presentar este informe se vieron comprometidos los siguientes elementos:</p>
+    <table style="margin-bottom:6px">
+      <thead><tr>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px;width:50px">CANT.</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">DESCRIPCIÓN</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px;text-align:right">VALOR UNIT.</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">REF.</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px;text-align:right">VALOR TOTAL</th>
+      </tr></thead>
+      <tbody>${prodRows}</tbody>
+      <tfoot><tr>
+        <td colspan="4" style="border:1px solid #888;padding:3px 6px;text-align:right;font-weight:700;font-size:11px">TOTAL</td>
+        <td style="border:1px solid #888;padding:3px 6px;text-align:right;font-weight:700;font-size:11px">${fmtMoney(d.totalVal)}</td>
+      </tr></tfoot>
+    </table>
+    <p style="font-size:11px;margin:4px 0"><strong>PROPIETARIO DE LOS BIENES:</strong> HOMECENTER</p>
+
+    <table style="margin:8px 0">
+      <tr>
+        <td style="border:1px solid #888;padding:4px 8px;font-size:11px">¿La Policía de Vigilancia hace devolución formal de los elementos incautados a través de acta?</td>
+        <td style="border:1px solid #888;padding:4px 8px;text-align:center;font-size:11px;width:30px">SI${d.devActa === 'SI' ? ' X' : ''}</td>
+        <td style="border:1px solid #888;padding:4px 8px;text-align:center;font-size:11px;width:30px">NO${d.devActa === 'NO' ? ' X' : ''}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #888;padding:4px 8px;font-size:11px">¿El(los) producto(s) es(son) aptos para ser comercializados nuevamente?</td>
+        <td style="border:1px solid #888;padding:4px 8px;text-align:center;font-size:11px">SI${d.aptoVenta === 'SI' ? ' X' : ''}</td>
+        <td style="border:1px solid #888;padding:4px 8px;text-align:center;font-size:11px">NO${d.aptoVenta === 'NO' ? ' X' : ''}</td>
+      </tr>
+    </table>
+    <p style="font-size:11px;margin:6px 0">El valor del objeto material del delito asciende a (art. 268 C.P.P): <strong>${fmtMoney(d.totalVal)}</strong></p>
+
+    <div class="section-title">RELATO DE LOS HECHOS</div>
+    <p class="legal-para" style="white-space:pre-wrap">${d.relato}</p>
+
+    <div class="section-title">LLAMADO A LA POLICÍA</div>
+    <table style="margin-bottom:10px">
+      <thead><tr>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">#</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">HORA</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">LUGAR LLAMADO</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">TELÉFONO</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">OBSERVACIONES</th>
+      </tr></thead>
+      <tbody>${llamadasRows}</tbody>
+    </table>
+
+    <div class="section-title">AGENTES QUE ACUDIERON</div>
+    <table style="margin-bottom:10px">
+      <thead><tr>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">HORA LLEGADA</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">AGENTE</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">PLACA</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">RANGO</th>
+      </tr></thead>
+      <tbody>${agentesRows}</tbody>
+    </table>
+
+    <div class="section-title">ACTUACIÓN DE LA POLICÍA</div>
+    <p class="legal-para">${d.actuacion || '________________________________________________________________________________________________________________________________________________________________________'}</p>
+    <p style="font-size:11px;margin:6px 0"><strong>HORA EN QUE LA PERSONA FUE CONDUCIDA PARA JUDICIALIZACIÓN:</strong> ${d.horaConducida} horas</p>
+
+    <div class="section-title">TESTIGOS</div>
+    <p style="font-size:11px;margin-bottom:6px">Testigos de este incidente, aparte de mí, es (o son):</p>
+    <table style="margin-bottom:14px">
+      <thead><tr>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">NOMBRE</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">CÉDULA</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">CARGO</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">DIRECCIÓN</th>
+        <th style="border:1px solid #888;padding:3px 6px;background:#f0f0f0;font-size:11px">TELÉFONO</th>
+      </tr></thead>
+      <tbody>${testigosRows.join('')}</tbody>
+    </table>
+
+    <p class="legal-para">Doy mi autorización para que mis datos personales aquí consignados, sean tratados con la finalidad de ser citado para posteriores diligencias y audiencias penales que se desarrollen en virtud del proceso de judicialización, iniciado mediante el presente informe de aprehensión. Asimismo, manifiesto que conozco mis derechos como titular de la información. Lo anterior, teniendo en cuenta lo estipulado por la Ley 1581 de 2012 y su Decreto reglamentario 1377 de 2013.</p>
+    <p class="legal-para">De esta forma presento informe de aprehendido en flagrancia el día de hoy <strong>${d.hoy}</strong>.</p>
+    <p class="legal-para">Manifiesto, bajo la gravedad de juramento, que lo aquí escrito es cierto y que me ratifico en todo. Adicionalmente, informo que no podré asistir a rendir entrevista ante la Unidad de Reacción Inmediata por motivos laborales, pero estaré atento a cualquier requerimiento que se me haga en el futuro y próximas citaciones, de acuerdo a lo estipulado en el artículo 383 del Capítulo III del Título IV del Código de Procedimiento Penal, es decir, en la etapa de Juicio Oral.</p>
+    <p style="font-size:12px;margin-top:6px">Sin otro objeto,</p>
+    <div style="margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:60px">
+      <div style="border-top:1.5px solid #111;padding-top:8px;text-align:center;font-size:11.5px">
+        <strong>Firma</strong><br>Nombre: ${d.ap.nombre}<br>C.C. ${d.ap.cc}<br>Cargo: ${d.ap.cargo}<br>Almacén: ${d.ap.tiendaNombre}
+      </div>
+      <div></div>
+    </div>
+    <div style="margin-top:28px;border-top:1px solid #555">
+      <table style="width:100%;border-collapse:collapse">
+        <tr>
+          <td style="border:1px solid #555;padding:4px 8px;font-size:10px;text-align:center">Código Documento: FR-SAJ-020</td>
+          <td style="border:1px solid #555;padding:4px 8px;font-size:10px;text-align:center">Versión No. 1 agosto 2022</td>
+          <td style="border:1px solid #555;padding:4px 8px;font-size:10px;text-align:center">Página 1 de 2</td>
+        </tr>
+      </table>
+    </div>
+  </div>`;
+    }
+
+    // ── GENERAR DOC ───────────────────────────────────────────────────────────────
+    async function generarDoc() {
+      const cnt = state.counters[tiendaActual] || 1;
+      const numActual = String(cnt).padStart(3, '0');
+      document.getElementById('successNum').textContent = numActual;
+      document.getElementById('successFecha').textContent = new Date().toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+
+      try {
+        await sb.from('historial_aprehensiones').insert({
+          num_aprehension: numActual,
+          fecha_hecho: document.getElementById('fechaHecho').value,
+          cliente_nombre: document.getElementById('aprehendidoNombre').value || 'Sin nombre',
+          cliente_cc: document.getElementById('aprehendidoCC').value || 'Sin CC',
+          tienda_id: tiendaActual
+        });
+      } catch (e) { console.log('Error guardando historial', e); }
+
+      state.counters[tiendaActual] = cnt + 1;
+      saveState();
+      await saveCounter(tiendaActual, cnt + 1);
+      document.getElementById('numAprehDisplay').textContent = String(cnt + 1).padStart(3, '0');
+      showStep('Success');
+    }
+
+    function imprimirDoc() {
+      const docHTML = `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Informe Aprehensión N° ${docData.num}</title>
+<style>
+  body { font-family: 'Times New Roman', serif; padding: 20mm 20mm 20mm 20mm; max-width: 800px; margin: 0 auto; font-size: 11.5px; }
+  @media print { body { padding: 0; margin: 0; } @page { margin: 1.5cm; size: letter; } }
+</style>
+</head>
+<body>
+  ${buildDocHTML(docData)}
+  <script>window.onload=function(){ if(window.innerWidth>600) window.print(); }<\/script>
+</body>
+</html>`;
+      const blob = new Blob([docHTML], { type: 'text/html' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    }
+
+    function nuevoInforme() {
+      // Reset todos los campos
+      ['aprehensorSelect', 'aprehendidoNombre', 'aprehendidoCC', 'aprehendidoExpedida',
+        'aprehendidoNacionalidad', 'aprehendidoEdad', 'aprehendidoEstadoCivil', 'aprehendidoDia',
+        'aprehendidoMes', 'aprehendidoAnio', 'aprehendidoOcupacion',
+        'seccion', 'pasillo', 'lugarAprehension', 'dirigidaDespues', 'manifestaciones', 'descripcionPersona',
+        'relatoLibre', 'devolucionActa', 'aptoVenta', 'horaConducida', 'actuacionPolicial'
+      ].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = el.tagName === 'SELECT' ? '' : '';
+      });
+      // Defaults
+      document.getElementById('aprehendidoExpedida').value = 'Cali';
+      document.getElementById('aprehendidoNacionalidad').value = 'Colombiano/a';
+      document.getElementById('lugarAprehension').value = 'Área de funcionarios';
+      document.getElementById('dirigidaDespues').value = 'Funcionarios';
+      document.getElementById('manifestaciones').value = 'No hace manifestación';
+      document.getElementById('fechaHecho').valueAsDate = new Date();
+      document.getElementById('aiResult').style.display = 'none';
+      document.getElementById('aiValidationWarn').style.display = 'none';
+      document.getElementById('devolucionActa').value = 'NO';
+      document.getElementById('aptoVenta').value = 'NO';
+      relatoFormalizado = '';
+
+      // Reset campos del aprehensor
+      ['aprehensorCC', 'aprehensorEdad', 'aprehensorEstadoCivil', 'aprehensorEducacion',
+        'aprehensorCargo', 'aprehensorCelular', 'aprehensorCorreo', 'aprehensorJefe', 'aprehensorDireccion'
+      ].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+
+      // Reset dinámicos
+      document.getElementById('productosContainer').innerHTML = '';
+      document.getElementById('llamadasContainer').innerHTML = '';
+      document.getElementById('agentesContainer').innerHTML = '';
+      document.getElementById('testigosContainer').innerHTML = '';
+      prodIdx = 0; llamIdx = 0; agteIdx = 0; testIdx = 0;
+      addProducto(); addLlamada(); addAgente();
+
+      buildChecklist();
+      const cnt = state.counters[tiendaActual] || 1;
+      document.getElementById('numAprehDisplay').textContent = String(cnt).padStart(3, '0');
+      currentStep = 0; showStep(0);
+    }
+
+    // ── ADMIN ──────────────────────────────────────────────────────────────────────
+    function openAdmin() {
+      document.getElementById('adminOverlay').classList.add('open');
+      document.getElementById('lockScreen').classList.remove('hidden');
+      document.getElementById('adminContent').classList.add('hidden');
+      document.getElementById('lockError').style.display = 'none';
+      ['p0', 'p1', 'p2', 'p3'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('p0').focus();
+    }
+    function closeAdmin() { document.getElementById('adminOverlay').classList.remove('open'); }
+    function closeAdminOnBg(e) { if (e.target === document.getElementById('adminOverlay')) closeAdmin(); }
+    function pinMove(i) { const v = document.getElementById('p' + i).value; if (v && i < 3) document.getElementById('p' + (i + 1)).focus(); }
+    function pinBack(e, i) { if (e.key === 'Backspace' && !document.getElementById('p' + i).value && i > 0) document.getElementById('p' + (i - 1)).focus(); if (e.key === 'Enter') checkPin(); }
+
+    function checkPin() {
+      const pin = ['p0', 'p1', 'p2', 'p3'].map(id => document.getElementById(id).value).join('');
+      if (pin === state.pin) {
+        document.getElementById('lockScreen').classList.add('hidden');
+        document.getElementById('adminContent').classList.remove('hidden');
+        renderAdminContent();
+      } else {
+        document.getElementById('lockError').style.display = 'block';
+        ['p0', 'p1', 'p2', 'p3'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('p0').focus();
+      }
+    }
+
+    function renderAdminTabs() {
+      const tabs = document.getElementById('adminStoreTabs');
+      tabs.innerHTML = TIENDAS_LIST.map(t =>
+        '<button class="admin-store-tab ' + (adminTiendaActual === t.id ? 'active' : '') + '" onclick="switchAdminTienda(\'' + t.id + '\')">' + t.nombreCorto + '</button>'
+      ).join('');
+    }
+
+    function switchAdminTienda(tid) { adminTiendaActual = tid; renderAdminContent(); }
+
+    function renderAdminContent() {
+      renderAdminTabs();
+      const t = TIENDAS[adminTiendaActual];
+      document.getElementById('adminCounterStoreName').textContent = t.nombreCorto;
+      document.getElementById('adminCounterStoreName2').textContent = t.nombreCorto;
+      const cnt = state.counters[adminTiendaActual] || 1;
+      document.getElementById('counterDisplay').textContent = String(cnt).padStart(3, '0');
+      const ci = document.getElementById('counterInput'); if (ci) ci.value = '';
+      document.getElementById('newPin').value = '';
+      document.getElementById('confirmPin').value = '';
+      document.getElementById('saveConfirm').style.display = 'none';
+      document.getElementById('editApPanel').style.display = 'none';
+
+      const aps = aprehensoresCache.filter(a => a.tienda_id === adminTiendaActual);
+      const list = document.getElementById('apoderadosList');
+      list.innerHTML = '';
+
+      if (aps.length === 0) {
+        list.innerHTML = '<p style="font-size:12px;color:var(--ink-4);margin-bottom:12px">Sin aprehensores para esta tienda.</p>';
+      }
+
+      aps.forEach(ap => {
+        const div = document.createElement('div');
+        div.className = 'apoderado-item';
+        div.innerHTML =
+          '<div class="ap-info">' +
+          '<div class="ap-name">' + ap.nombre + '</div>' +
+          '<div class="ap-cc">CC ' + ap.cc +
+          (ap.edad ? ' · ' + ap.edad + ' años' : '') +
+          (ap.correo ? ' · ' + ap.correo : '') +
+          '</div>' +
+          '</div>' +
+          '<button onclick="openApEditor(' + ap.id + ')" ' +
+          'style="background:none;border:1px solid #e0deda;color:var(--ink-3);padding:5px 10px;border-radius:7px;cursor:pointer;font-size:12px;font-weight:600;font-family:inherit;display:inline-flex;align-items:center;gap:5px;transition:all 0.2s" ' +
+          'onmouseover="this.style.background=\'var(--red-soft)\';this.style.borderColor=\'var(--red-border)\';this.style.color=\'var(--red)\'" ' +
+          'onmouseout="this.style.background=\'none\';this.style.borderColor=\'#e0deda\';this.style.color=\'var(--ink-3)\'">' +
+          '<svg width="13" height="13" viewBox="0 0 24 24" fill="none">' +
+          '<path d="M12 20h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+          '<path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '</svg>' +
+          'Editar' +
+          '</button>';
+        list.appendChild(div);
+      });
+    }
+
+    let editingApId = null;
+
+    function openApEditor(apId) {
+      const ap = aprehensoresCache.find(a => a.id === apId);
+      if (!ap) return;
+      editingApId = apId;
+      document.getElementById('editApTitle').textContent = 'Editando: ' + ap.nombre;
+      document.getElementById('eapNombre').value = ap.nombre || '';
+      document.getElementById('eapCC').value = ap.cc || '';
+      document.getElementById('eapCargo').value = ap.cargo || 'Apoderado Judicial';
+      document.getElementById('eapEdad').value = ap.edad || '';
+      document.getElementById('eapEstado').value = ap.estado_civil || '';
+      document.getElementById('eapEducacion').value = ap.educacion || 'Bachiller';
+      document.getElementById('eapCorreo').value = ap.correo || '';
+      document.getElementById('eapCelular').value = ap.celular || '';
+      document.getElementById('eapJefe').value = ap.jefe_inmediato || '';
+      document.getElementById('eapDireccion').value = ap.direccion || '';
+      document.getElementById('editApPanel').style.display = 'block';
+      document.getElementById('saveApConfirm').style.display = 'none';
+      document.getElementById('editApPanel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function closeApEditor() {
+      document.getElementById('editApPanel').style.display = 'none';
+      editingApId = null;
+    }
+
+    async function saveApEditor() {
+      if (!editingApId) return;
+      const updated = {
+        nombre: document.getElementById('eapNombre').value.trim(),
+        cc: document.getElementById('eapCC').value.trim(),
+        cargo: document.getElementById('eapCargo').value,
+        edad: document.getElementById('eapEdad').value.trim(),
+        estado_civil: document.getElementById('eapEstado').value,
+        educacion: document.getElementById('eapEducacion').value,
+        correo: document.getElementById('eapCorreo').value.trim(),
+        celular: document.getElementById('eapCelular').value.trim(),
+        jefe_inmediato: document.getElementById('eapJefe').value.trim(),
+        direccion: document.getElementById('eapDireccion').value.trim(),
+      };
+      if (!updated.nombre || !updated.cc) { alert('Nombre y cédula son obligatorios'); return; }
+      try {
+        await sb.from('apoderados').update(updated).eq('id', editingApId);
+        const idx = aprehensoresCache.findIndex(a => a.id === editingApId);
+        if (idx > -1) aprehensoresCache[idx] = Object.assign({}, aprehensoresCache[idx], updated);
+        if (state.apoderados[adminTiendaActual]) {
+          const li = state.apoderados[adminTiendaActual].findIndex(a => a.id === editingApId);
+          if (li > -1) state.apoderados[adminTiendaActual][li] = Object.assign({}, state.apoderados[adminTiendaActual][li], { nombre: updated.nombre, cc: updated.cc, cargo: updated.cargo });
+          saveState();
+        }
+        if (adminTiendaActual === tiendaActual) fillAprehensorSelect();
+        document.getElementById('saveApConfirm').style.display = 'block';
+        setTimeout(() => document.getElementById('saveApConfirm').style.display = 'none', 2500);
+        renderAdminContent();
+      } catch (e) {
+        alert('Error al guardar: ' + e.message);
+      }
+    }
+
+    function addApoderado() {
+      const n = document.getElementById('newApNombre').value.trim();
+      const c = document.getElementById('newApCC').value.trim();
+      if (!n || !c) { alert('Ingresa nombre y cédula'); return; }
+      sb.from('apoderados').insert({ nombre: n, cc: c, cargo: 'Apoderado Judicial', tienda_id: adminTiendaActual })
+        .select().single()
+        .then(({ data, error }) => {
+          if (error) { alert('Error al agregar: ' + error.message); return; }
+          aprehensoresCache.push(data);
+          if (!state.apoderados[adminTiendaActual]) state.apoderados[adminTiendaActual] = [];
+          state.apoderados[adminTiendaActual].push({ id: data.id, nombre: data.nombre, cc: data.cc, cargo: data.cargo });
+          saveState();
+          document.getElementById('newApNombre').value = '';
+          document.getElementById('newApCC').value = '';
+          if (adminTiendaActual === tiendaActual) fillAprehensorSelect();
+          renderAdminContent();
+          openApEditor(data.id);
+        });
+    }
+
+    function setCounter() {
+      const v = parseInt(document.getElementById('counterInput').value);
+      if (!v || v < 1) { alert('Ingresa un número válido mayor a 0'); return; }
+      state.counters[adminTiendaActual] = v;
+      saveState(); saveCounter(adminTiendaActual, v);
+      document.getElementById('counterDisplay').textContent = String(v).padStart(3, '0');
+      if (adminTiendaActual === tiendaActual) document.getElementById('numAprehDisplay').textContent = String(v).padStart(3, '0');
+      document.getElementById('counterInput').value = '';
+      alert('Contador actualizado. Proximo informe: ' + String(v).padStart(3, '0'));
+    }
+
+    function resetCounter() {
+      if (!confirm('Reiniciar contador de ' + TIENDAS[adminTiendaActual].nombreCorto + ' a 1?')) return;
+      state.counters[adminTiendaActual] = 1;
+      saveState(); saveCounter(adminTiendaActual, 1);
+      document.getElementById('counterDisplay').textContent = '001';
+      if (adminTiendaActual === tiendaActual) document.getElementById('numAprehDisplay').textContent = '001';
+    }
+
+    async function saveAdmin() {
+      const np = document.getElementById('newPin').value;
+      const cp = document.getElementById('confirmPin').value;
+      if (np) {
+        if (np.length !== 4 || !/^\d{4}$/.test(np)) { alert('PIN debe ser 4 digitos'); return; }
+        if (np !== cp) { alert('PINs no coinciden'); return; }
+        state.pin = np;
+      }
+      saveState();
+      const c = document.getElementById('saveConfirm');
+      c.style.display = 'block';
+      setTimeout(() => c.style.display = 'none', 3000);
+    }
+
+    // ── PARTÍCULAS BOTONES HEADER ──
+    document.querySelectorAll('.btn-store, .btn-nav-doc').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        for (let i = 0; i < 6; i++) {
+          const particle = document.createElement('span');
+          particle.className = 'particle';
+          particle.style.left = (Math.random() * 100) + '%';
+          particle.style.top = (40 + Math.random() * 40) + '%';
+          particle.style.animationDelay = (Math.random() * 0.2) + 's';
+          btn.appendChild(particle);
+          setTimeout(() => particle.remove(), 500);
+        }
+      });
+    });
+
+    // ── ARRANQUE ──────────────────────────────────────────────────────────────────
+    init();
+
+    async function testSupabaseConnection() {
+      try {
+        const { data, error } = await sb.from('apoderados').select('count').limit(1);
+        if (error) {
+          console.error('❌ Error de conexión a Supabase:', error);
+          return false;
+        }
+        console.log('✅ Conexión a Supabase exitosa');
+        return true;
+      } catch (e) {
+        console.error('❌ Error de red:', e.message);
+        return false;
+      }
+    }
+
+    // Llamar al inicio para probar
+    testSupabaseConnection();
+  </script>
+
+  <!-- FAB WhatsApp -->
+  <div class="fab-wrap" id="fabWrap">
+    <div class="fab-tooltip" id="fabTooltip">Soporte por WhatsApp</div>
+    <button class="fab-btn" id="fabBtn"
+      onclick="window.open('https://wa.me/573147236220?text=Hola,%20necesito%20soporte%20para%20generar%20el%20informe%20de%20aprehensión%20(Describe%20brevemente%20lo%20que%20necesitas)','_blank')">
+      <div class="fab-ring"></div>
+      <div class="cube-scene">
+        <div class="cube" id="cube">
+          <div class="face face-front">
+            <div class="dot-idle"></div>
+          </div>
+          <div class="face face-back">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12c0 2.121.553 4.112 1.522 5.845L.057 23.083a.75.75 0 00.906.927l5.347-1.44A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.7-.498-5.254-1.371l-.372-.215-3.862 1.04 1.066-3.754-.233-.386A9.957 9.957 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+            </svg>
+          </div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+          <div class="face face-left"></div>
+          <div class="face face-right"></div>
+        </div>
+      </div>
+    </button>
+  </div>
+
+</body>
+
+</html>
